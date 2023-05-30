@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url("https://use.typekit.net/aaj3sxk.css");
+
+$black100: #171717;
+$black80: #434343;
+$black60: #707070;
+$black40: #9c9c9c;
+$black20: #c9c9c9;
+
+$primary100: #c8ff00;
+$primary80: #d5ff3c;
+$primary60: #ddfe65;
+$primary40: #edffaa;
+$primary20: #f6ffd6;
+
+$point: #ad00ff;
+
+:export {
+    black100: $black100;
+    black80: $black80;
+    black60: $black60;
+    black40: $black40;
+    black20: $black20;
+
+    primary100: $primary100;
+    primary80: $primary80;
+    primary60: $primary60;
+    primary40: $primary40;
+    primary20: $primary20;
+
+    point: $point;
+}
+
+@font-face {
+    font-family: "Apple SD Gothic Neo";
+    font-weight: 100;
+    src: url("/asset/font/AppleSDGothicNeo/AppleSDGothicNeo_100.woff2")
+        format(woff2);
+}
+@font-face {
+    font-family: "Apple SD Gothic Neo";
+    font-weight: 200;
+    src: url("/asset/font/AppleSDGothicNeo/AppleSDGothicNeo_200.woff2")
+        format(woff2);
+}
+@font-face {
+    font-family: "Apple SD Gothic Neo";
+    font-weight: 300;
+    src: url("/asset/font/AppleSDGothicNeo/AppleSDGothicNeo_300.woff2")
+        format(woff2);
+}
+@font-face {
+    font-family: "Apple SD Gothic Neo";
+    font-weight: 400;
+    src: url("/asset/font/AppleSDGothicNeo/AppleSDGothicNeo_400.woff2")
+        format(woff2);
+}
+@font-face {
+    font-family: "Apple SD Gothic Neo";
+    font-weight: 500;
+    src: url("/asset/font/AppleSDGothicNeo/AppleSDGothicNeo_500.woff2")
+        format(woff2);
+}
+@font-face {
+    font-family: "Apple SD Gothic Neo";
+    font-weight: 600;
+    src: url("/asset/font/AppleSDGothicNeo/AppleSDGothicNeo_600.woff2")
+        format(woff2);
+}
+@font-face {
+    font-family: "Apple SD Gothic Neo";
+    font-weight: 700;
+    src: url("/asset/font/AppleSDGothicNeo/AppleSDGothicNeo_700.woff2")
+        format(woff2);
+}
+@font-face {
+    font-family: "Apple SD Gothic Neo";
+    font-weight: 800;
+    src: url("/asset/font/AppleSDGothicNeo/AppleSDGothicNeo_800.woff2")
+        format(woff2);
+}
+@font-face {
+    font-family: "Apple SD Gothic Neo";
+    font-weight: 900;
+    src: url("/asset/font/AppleSDGothicNeo/AppleSDGothicNeo_900.woff2")
+        format(woff2);
+}
+
+body {
+    // background: $primary100;
+}
+
+.header {
+    font-family: proxima-nova, sans-serif;
+    font-weight: 800;
+    font-size: 30px;
+    line-height: 30px;
+    color: #171717;
+}
+
+.home {
+    font-family: "Apple SD Gothic Neo";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 36px;
+}

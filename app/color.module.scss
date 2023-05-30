@@ -1,0 +1,29 @@
+$black100: #171717;
+$black80: #434343;
+$black60: #707070;
+$black40: #9c9c9c;
+$black20: #c9c9c9;
+
+$primary100: #c8ff00;
+$primary80: #d5ff3c;
+$primary60: #ddfe65;
+$primary40: #edffaa;
+$primary20: #f6ffd6;
+
+$point: #ad00ff;
+
+:export {
+    black100: $black100;
+    black80: $black80;
+    black60: $black60;
+    black40: $black40;
+    black20: $black20;
+
+    primary100: $primary100;
+    primary80: $primary80;
+    primary60: $primary60;
+    primary40: $primary40;
+    primary20: $primary20;
+
+    point: $point;
+}
