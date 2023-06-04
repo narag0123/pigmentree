@@ -1,6 +1,8 @@
 import "./globals.scss";
 import styles from "./color.module.scss";
-import Header from "./header/nav";
+import Header from "./nav/header";
+import fontStyleUtil from "./util/fontStyle";
+import Footer from "./nav/footer";
 
 export const metadata = {
     title: "Create Next App",
@@ -10,9 +12,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
     return (
         <html lang="en">
-            <body className="bg-primary60">
+            <body className="bg-primary60 ">
                 <Header />
                 {children}
+                <Footer />
             </body>
         </html>
     );
