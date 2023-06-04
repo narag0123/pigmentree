@@ -9,8 +9,8 @@ import explosion from "../../public/asset/img/explosion.png";
 import icon_star4 from "../../public/asset/img/icons/star4.png";
 import icon_docs_active from "../../public/asset/img/icons/docs.png";
 import icon_docs from "../../public/asset/img/icons/docsGrey.png";
-import icon_arrowGrey from "../../public/asset/img/icons/arrowGrey.png";
-import icon_arrowGrey_active from "../../public/asset/img/icons/arrowGreyActive.png";
+import icon_arrowGrey from "../../public/asset/img/icons/arrow_grey.png";
+import icon_arrowGrey_active from "../../public/asset/img/icons/arrow_grey_active.png";
 
 import red from "../../public/asset/img/Red.png";
 import red_grey from "../../public/asset/img/RedGrey.png";

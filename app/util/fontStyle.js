@@ -12,7 +12,7 @@ export default function fontStyleUtil(
         } else if (lang === "en") {
             return "proxima-nova, sans-serif";
         } else {
-            return "Apple SD Gothic Neo";
+            return "Apple SD Gothic Neo ";
         }
     };
     const font = {
