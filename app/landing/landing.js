@@ -1,9 +1,25 @@
-import React from "react";
+"use client";
+
+import React, {
+    useContext,
+    useEffect,
+    useState,
+} from "react";
 import fontStyleUtil from "../util/fontStyle";
 import Image from "next/image";
+import {
+    motion,
+    spring,
+    AnimatePresence,
+    easeInOut,
+} from "framer-motion";
+import styles from "../color.module.scss";
 
-import icon_star from "../../public/asset/img/icons/star.png";
-import icon_globe from "../../public/asset/img/icons/globe.png";
+import icon_star60 from "../../public/asset/img/icons/star60.png";
+import icon_globe60 from "../../public/asset/img/icons/globe60.png";
+import icon_star80 from "../../public/asset/img/icons/star80.png";
+import icon_globe80 from "../../public/asset/img/icons/globe80.png";
+import vid from "../../public/asset/img/vid.png";
 import icon_arrow from "../../public/asset/img/icons/Arrow.png";
 import explosion from "../../public/asset/img/explosion.png";
 import icon_star4 from "../../public/asset/img/icons/star4.png";
@@ -25,12 +41,19 @@ import purple_grey from "../../public/asset/img/PurpleGrey.png";
 import icon_star_black from "../../public/asset/img/icons/fillStar4Black.png";
 
 import { sheet } from "../data/sheet";
+import { UseContext } from "../store/store";
 
 function Landing() {
-    console.log(sheet);
+    const context = useContext(UseContext);
+    const { isPage, setIsPage } = context;
+    const [isHover, setIsHover] = useState("none");
+
+    useEffect(() => {
+        setIsPage("landing");
+    }, []);
 
     return (
-        <div className="landing pt-[10rem]">
+        <div className="landing pt-[10rem] ">
             <div
                 className="wrapper w-[128rem] mx-auto"
                 id="cont1"
@@ -45,7 +68,18 @@ function Landing() {
                             13
                         )}
                     >
-                        <div className="flex items-end">
+                        <motion.div
+                            className="flex items-end"
+                            initial={{
+                                x: -100,
+                                opacity: 0,
+                            }}
+                            animate={{
+                                x: 0,
+                                opacity: 1,
+                            }}
+                            transition={spring}
+                        >
                             <div>C</div>
                             <div className="flex flex-col">
                                 <div className="flex gap-[10px] justify-center">
@@ -55,17 +89,40 @@ function Landing() {
                                 <div>O</div>
                             </div>
                             <div>LORIZE</div>
-                        </div>
-                        <div>IDEAS</div>
+                        </motion.div>
+                        <motion.div
+                            initial={{
+                                x: -100,
+                                opacity: 0,
+                            }}
+                            animate={{
+                                x: 0,
+                                opacity: 1,
+                            }}
+                            transition={{
+                                ...spring,
+                                delay: 0.1,
+                            }}
+                        >
+                            IDEAS
+                        </motion.div>
                     </div>
                     <div className="funcBox flex flex-col pt-[3rem] w-[47.8rem] gap-[4rem] m-0">
-                        <div className="w-[100%] h-[10.4rem] rounded-full vid flex items-center p-[1rem]">
+                        <motion.div
+                            className="w-[100%] h-[10.4rem] rounded-full vid flex items-center p-[1rem]"
+                            initial={{
+                                scale: 0,
+                            }}
+                            animate={{
+                                scale: 1.0,
+                            }}
+                        >
                             <div className="w-[82px] h-[82px] rounded-full bg-black100 backCircle m-0">
                                 <div className="triangle"></div>
                             </div>
-                        </div>
+                        </motion.div>
                         <div className="px-4 w-[47rem]">
-                            <p
+                            <motion.p
                                 className="phrase"
                                 style={fontStyleUtil(
                                     "kr",
@@ -73,11 +130,19 @@ function Landing() {
                                     600,
                                     3
                                 )}
+                                initial={{
+                                    opacity: 0,
+                                    x: 100,
+                                }}
+                                animate={{
+                                    opacity: 1,
+                                    x: 0,
+                                }}
                             >
                                 당신의 아이디어에 생명을
                                 불어 넣어보세요!
-                            </p>
-                            <p
+                            </motion.p>
+                            <motion.p
                                 className="phrase"
                                 style={fontStyleUtil(
                                     "kr",
@@ -85,24 +150,53 @@ function Landing() {
                                     300,
                                     3
                                 )}
+                                initial={{
+                                    opacity: 0,
+                                    x: 100,
+                                }}
+                                animate={{
+                                    opacity: 1,
+                                    x: 0,
+                                }}
+                                transition={{
+                                    delay: 0.1,
+                                }}
                             >
                                 감각적인 컬러와 최고의
                                 질감으로 여러분이 만드는
                                 작품의 훌륭한 조력자가
                                 되어드리겠습니다.
-                            </p>
+                            </motion.p>
                         </div>
                     </div>
                 </div>
                 <div className="divider-Btn py-[3rem] flex gap-[6rem] items-center">
-                    <div className="Btn-recommend flex gap-[4rem]">
-                        <button className="Btn-around bg-transparent rounded-full w-[23.1rem] h-[5rem] border-[1px] border-black60 m-0 px-[20px] flex items-center cursor-pointer">
+                    <div className="Btn-recommend flex gap-[2rem]">
+                        <motion.button
+                            className="Btn-around bg-transparent rounded-full w-[23.1rem] h-[5rem] border-[1px] border-black80 m-0 px-[20px] flex items-center cursor-pointer"
+                            initial={{
+                                opacity: 0,
+                            }}
+                            animate={{
+                                opacity: 1,
+                            }}
+                            transition={{
+                                type: "spring",
+                                damping: 15,
+                                stiffness: 1000,
+                            }}
+                            whileHover={{
+                                // scale: 1.1,
+                                rotateZ: -10,
+                            }}
+                        >
                             <Image
+                                alt="icon_star"
                                 className="icon_star m-0 w-[20px]"
-                                src={icon_star}
+                                src={icon_star80}
                             />
-                            <span
-                                className="text-black60"
+                            <motion.span
+                                className="text-black80"
                                 style={fontStyleUtil(
                                     "kr",
                                     1.8,
@@ -111,15 +205,29 @@ function Landing() {
                                 )}
                             >
                                 제품 둘러보기
-                            </span>
-                        </button>
-                        <button className="Btn-around bg-transparent rounded-full w-[29rem] h-[5rem] border-[1px] border-black60 m-0 px-[20px] flex items-center cursor-pointer">
+                            </motion.span>
+                        </motion.button>
+
+                        <motion.button
+                            className="Btn-around bg-transparent rounded-full w-[29rem] h-[5rem] border-[1px] border-black80 m-0 px-[20px] flex items-center cursor-pointer"
+                            initial={{
+                                opacity: 0,
+                            }}
+                            animate={{ opacity: 1 }}
+                            transition={{
+                                type: "spring",
+                                damping: 15,
+                                stiffness: 1000,
+                            }}
+                            whileHover={{ rotateZ: -10 }}
+                        >
                             <Image
+                                alt="icon_globe"
                                 className="icon_globe m-0 w-[20px]"
-                                src={icon_globe}
+                                src={icon_globe80}
                             />
                             <span
-                                className="text-black60"
+                                className="text-black80"
                                 style={fontStyleUtil(
                                     "kr",
                                     1.8,
@@ -129,25 +237,69 @@ function Landing() {
                             >
                                 추천 컬러 알아보기
                             </span>
-                        </button>
+                        </motion.button>
                     </div>
-                    <div className="divider-round w-[100%] h-[0px] border-y-[0.5px] border-black60 relative">
-                        <div className="circle-end rounded-full w-[5px] h-[5px] bg-black60 absolute left-0 -translate-y-2/4"></div>
-                        <div className="circle-end rounded-full w-[5px] h-[5px] bg-black60 absolute top-[50%] left-[100%] -translate-y-2/4"></div>
+                    <div className="divider-round w-[100%]">
+                        <motion.div
+                            className="divider-round border-y-[0.5px] border-black80 relative"
+                            initial={{
+                                width: 0,
+                            }}
+                            animate={{
+                                width: "100%",
+                            }}
+                            transition={{
+                                delay: 0.3,
+                                duration: 1,
+                                type: "spring",
+                                damping: 50,
+                                stiffness: 500,
+                            }}
+                        >
+                            <motion.div
+                                className="circle-end rounded-full w-[5px] h-[5px] bg-black80 absolute left-0 -translate-y-2/4"
+                                initial={{
+                                    opacity: 0,
+                                }}
+                                animate={{
+                                    opacity: 1,
+                                }}
+                                transition={{
+                                    delay: 0.3,
+                                    duration: 1,
+                                }}
+                            ></motion.div>
+                            <motion.div
+                                className="circle-end rounded-full w-[5px] h-[5px] bg-black80 absolute top-[50%] left-[100%] -translate-y-2/4"
+                                initial={{
+                                    opacity: 0,
+                                }}
+                                animate={{
+                                    opacity: 1,
+                                }}
+                                transition={{
+                                    delay: 0.3,
+                                    duration: 1,
+                                }}
+                            ></motion.div>
+                        </motion.div>
                     </div>
                 </div>
                 <div className="img-bottom-cont  mt-[10rem]  relative">
                     <div className="rounded-full bg-black100 w-[20rem] h-[20rem] absolute top-0 -translate-y-[50%] right-[13rem] z-0 flex justify-center items-center">
                         <Image
+                            alt="icon_arrow"
                             src={icon_arrow}
                             width={"57"}
                             className="m-0 cursor-pointer"
                         />
                     </div>
-                    <div className="explosion-image-cont w-[1280px] h-[720px] overflow-hidden rounded-t-[12rem] flex items-end justify-end">
+                    <div className="explosion-image-cont w-[128rem] h-[72rem] overflow-hidden rounded-t-[12rem] flex items-end justify-end">
                         <Image
+                            alt="explosion"
                             src={explosion}
-                            className="cursor-pointer"
+                            loading="lazy"
+                            className="cursor-pointer object-cover"
                         />
                     </div>
                 </div>
@@ -169,6 +321,7 @@ function Landing() {
                         PIGMENTREE
                     </div>
                     <Image
+                        alt="icon_star4"
                         src={icon_star4}
                         className="w-[5rem] object-contain m-0"
                     />
@@ -184,12 +337,13 @@ function Landing() {
                         COLORIZE IDEAS
                     </div>
                     <Image
+                        alt="icon_star4"
                         src={icon_star4}
                         className="w-[5rem] object-contain m-0"
                     />
                 </div>
                 <div className="wrapper w-[128rem] mx-auto">
-                    <div
+                    <motion.div
                         className="title text-black20 py-[3rem]"
                         style={fontStyleUtil(
                             "en",
@@ -197,12 +351,25 @@ function Landing() {
                             900,
                             8.8
                         )}
+                        initial={{
+                            opacity: 0,
+                            x: -100,
+                        }}
+                        whileInView={{
+                            x: 0,
+                            opacity: 1,
+                        }}
+                        viewport={{ once: true }}
+                        transition={{
+                            delay: 0.2,
+                            duration: 1,
+                        }}
                     >
                         OUR PRODUCT
-                    </div>
+                    </motion.div>
                     <div className="flex justify-between items-end">
                         <div className="flex-[0.85] m-0">
-                            <div
+                            <motion.div
                                 className="text-black20"
                                 style={fontStyleUtil(
                                     "kr",
@@ -210,11 +377,24 @@ function Landing() {
                                     700,
                                     4.8
                                 )}
+                                initial={{
+                                    opacity: 0,
+                                    x: -100,
+                                }}
+                                whileInView={{
+                                    opacity: 1,
+                                    x: 0,
+                                }}
+                                viewport={{ once: true }}
+                                transition={{
+                                    delay: 0.2,
+                                    duration: 1,
+                                }}
                             >
                                 훌륭한 작품은 훌륭한 재료로
                                 부터
-                            </div>
-                            <div
+                            </motion.div>
+                            <motion.div
                                 className="text-black20"
                                 style={fontStyleUtil(
                                     "kr",
@@ -222,6 +402,19 @@ function Landing() {
                                     400,
                                     3
                                 )}
+                                initial={{
+                                    opacity: 0,
+                                    x: -100,
+                                }}
+                                whileInView={{
+                                    opacity: 1,
+                                    x: 0,
+                                }}
+                                viewport={{ once: true }}
+                                transition={{
+                                    delay: 0.4,
+                                    duration: 1,
+                                }}
                             >
                                 훌륭한 작품은 훌륭한 재료로
                                 부터 시작됩니다. 일류 쉐프의
@@ -230,19 +423,73 @@ function Landing() {
                                 SGS, TDS 등과 같이 검증된
                                 문서들로 더욱 안전하고 품질
                                 또한 보장됩니다!
-                            </div>
+                            </motion.div>
                         </div>
                         <div className="btns-sheet text-black20 flex flex-col m-0">
                             <div className="grid grid-cols-2 gap-[1rem]">
                                 {sheet.map((e, i) => (
-                                    <div className="flex justify-start items-center btn-box border border-black60 rounded-full py-[1rem] px-[2rem] gap-[1rem] w-full cursor-pointer">
+                                    <motion.div
+                                        className="flex justify-start items-center btn-box border border-black60 rounded-full py-[1rem] px-[2rem] gap-[1rem] w-full cursor-pointer"
+                                        key={i}
+                                        initial={{
+                                            scale: 0,
+                                        }}
+                                        whileInView={{
+                                            scale: 1,
+                                            transition: {
+                                                type: "spring",
+                                                delay:
+                                                    0.2 +
+                                                    i * 0.1,
+                                            },
+                                        }}
+                                        viewport={{
+                                            once: true,
+                                        }}
+                                        whileHover={"hover"}
+                                        onMouseEnter={() => {
+                                            setIsHover(
+                                                "docs" + i
+                                            );
+                                        }}
+                                        onMouseLeave={() => {
+                                            setIsHover(
+                                                "none"
+                                            );
+                                        }}
+                                        variants={{
+                                            hover: {
+                                                border: `1px solid ${styles.black20}`,
+                                                transition:
+                                                    {
+                                                        type: "easeInOut",
+                                                        duration: 0.1,
+                                                    },
+                                            },
+                                        }}
+                                    >
                                         <Image
-                                            src={icon_docs}
+                                            src={
+                                                isHover ===
+                                                "docs" + i
+                                                    ? icon_docs_active
+                                                    : icon_docs
+                                            }
+                                            alt={e.name}
                                             width={20}
                                             className="m-0"
                                         />
-                                        <div className="flex-col flex items-start m-0">
-                                            <p
+                                        <motion.div className="flex-col flex items-start m-0">
+                                            <motion.p
+                                                variants={{
+                                                    hover: {
+                                                        color: styles.black20,
+                                                        transition:
+                                                            {
+                                                                easeInOut,
+                                                            },
+                                                    },
+                                                }}
                                                 className="text-black60"
                                                 style={fontStyleUtil(
                                                     "en",
@@ -252,18 +499,44 @@ function Landing() {
                                                 )}
                                             >
                                                 {e.name}
-                                            </p>
-                                            <p className="text-black60">
+                                            </motion.p>
+                                            <motion.p
+                                                className="text-black60"
+                                                variants={{
+                                                    hover: {
+                                                        color: styles.black20,
+                                                        transition:
+                                                            {
+                                                                easeInOut,
+                                                            },
+                                                    },
+                                                }}
+                                            >
                                                 {e.subName}
-                                            </p>
-                                        </div>
-                                    </div>
+                                            </motion.p>
+                                        </motion.div>
+                                    </motion.div>
                                 ))}
                             </div>
                         </div>
                     </div>
                     <div className="purchaseLink w-full py-[10rem] ">
-                        <div className="w-full h-[15rem] border border-y-black80 border-x-0 flex justify-between items-center">
+                        <motion.div
+                            className="w-full h-[15rem] border border-y-black80 border-x-0 flex justify-between items-center"
+                            initial={{
+                                opacity: 0,
+                                x: -100,
+                            }}
+                            whileInView={{
+                                opacity: 1,
+                                x: 0,
+                            }}
+                            viewport={{ once: true }}
+                            transition={{
+                                delay: 0.2,
+                                duration: 1,
+                            }}
+                        >
                             <div className="m-0 text-black80 ml-[4rem] flex items-center gap-[2rem]">
                                 <p
                                     style={fontStyleUtil(
@@ -278,12 +551,28 @@ function Landing() {
                             </div>
                             <div className="m-0 w-[12rem] h-[12rem] flex items-center bg-black100">
                                 <Image
+                                    alt={"icon_arrowGrey"}
                                     height={"40"}
                                     src={icon_arrowGrey}
                                 />
                             </div>
-                        </div>
-                        <div className="w-full h-[15rem] border border-y-black80 border-x-0 flex justify-between items-center">
+                        </motion.div>
+                        <motion.div
+                            className="w-full h-[15rem] border border-y-black80 border-x-0 flex justify-between items-center"
+                            initial={{
+                                opacity: 0,
+                                x: -100,
+                            }}
+                            whileInView={{
+                                opacity: 1,
+                                x: 0,
+                            }}
+                            viewport={{ once: true }}
+                            transition={{
+                                delay: 0.2,
+                                duration: 1,
+                            }}
+                        >
                             <div className="m-0 text-black80 ml-[4rem] flex items-center gap-[2rem]">
                                 <p
                                     style={fontStyleUtil(
@@ -298,12 +587,28 @@ function Landing() {
                             </div>
                             <div className="m-0 w-[12rem] h-[12rem] flex items-center bg-black100">
                                 <Image
+                                    alt="icon_arrowGrey"
                                     height={"40"}
                                     src={icon_arrowGrey}
                                 />
                             </div>
-                        </div>
-                        <div className="w-full h-[15rem] border border-y-black80 border-x-0 flex justify-between items-center">
+                        </motion.div>
+                        <motion.div
+                            className="w-full h-[15rem] border border-y-black80 border-x-0 flex justify-between items-center"
+                            initial={{
+                                opacity: 0,
+                                x: -100,
+                            }}
+                            whileInView={{
+                                opacity: 1,
+                                x: 0,
+                            }}
+                            viewport={{ once: true }}
+                            transition={{
+                                delay: 0.2,
+                                duration: 1,
+                            }}
+                        >
                             <div className="m-0 text-black80 ml-[4rem] flex items-center gap-[2rem]">
                                 <p
                                     style={fontStyleUtil(
@@ -318,15 +623,16 @@ function Landing() {
                             </div>
                             <div className="m-0 w-[12rem] h-[12rem] flex items-center bg-black100">
                                 <Image
+                                    alt="icon_arrowGrey"
                                     height={"40"}
                                     src={icon_arrowGrey}
                                 />
                             </div>
-                        </div>
+                        </motion.div>
                     </div>
                     <div className="flex flex-col ">
                         <div className="title flex justify-between gap-[8rem] mb-[1rem]">
-                            <p
+                            <motion.p
                                 style={fontStyleUtil(
                                     "en",
                                     7.2,
@@ -334,10 +640,23 @@ function Landing() {
                                     8.8
                                 )}
                                 className="text-black20"
+                                initial={{
+                                    opacity: 0,
+                                    y: -50,
+                                }}
+                                whileInView={{
+                                    opacity: 1,
+                                    y: 0,
+                                }}
+                                viewport={{ once: true }}
+                                transition={{
+                                    delay: 0.2,
+                                    duration: 0.5,
+                                }}
                             >
                                 BEST SERVICE
-                            </p>
-                            <p
+                            </motion.p>
+                            <motion.p
                                 style={fontStyleUtil(
                                     "en",
                                     2,
@@ -345,6 +664,19 @@ function Landing() {
                                     3
                                 )}
                                 className="text-black20 flex-[1] flex items-center"
+                                initial={{
+                                    opacity: 0,
+                                    sclae: 0,
+                                }}
+                                whileInView={{
+                                    opacity: 1,
+                                    scale: 1,
+                                }}
+                                viewport={{ once: true }}
+                                transition={{
+                                    delay: 0.4,
+                                    duration: 0.5,
+                                }}
                             >
                                 섬세한 예술가인 여러분을
                                 위하여 최적의 서비스를
@@ -353,102 +685,451 @@ function Landing() {
                                 CMYK, HSL 등 고객이
                                 사용하시는 분야의 색상계에
                                 맞춰 정보를 드립니다
-                            </p>
+                            </motion.p>
                         </div>
                         <div className="image-cont flex flex-col gap-[3rem]">
                             <div className="flex gap-[3rem]">
-                                <div className="relative">
-                                    <div className="absolute top-0 left-0 bg-[black] opacity-50 w-full h-full"></div>
-                                    <Image
-                                        src={red_grey}
-                                        width={340}
-                                        height={340}
-                                    />
-                                </div>
-                                <div className="relative">
-                                    <div className="absolute top-0 left-0 bg-[black] opacity-30 w-full h-full"></div>
-                                    <Image
-                                        src={orange_grey}
-                                        height={340}
-                                        className="flex-[1.0]"
-                                    />
-                                </div>
+                                <motion.div
+                                    className="relative overflow-hidden"
+                                    initial={{
+                                        opacity: 0,
+                                        scale: 0,
+                                    }}
+                                    whileInView={{
+                                        opacity: 1,
+                                        scale: 1,
+                                    }}
+                                    viewport={{
+                                        once: true,
+                                    }}
+                                    transition={{
+                                        type: "spring",
+                                        damping: 30,
+                                        stiffness: 200,
+                                        delay: 0.2,
+                                    }}
+                                    onMouseEnter={() => {
+                                        setIsHover("red");
+                                    }}
+                                    onMouseLeave={() => {
+                                        setIsHover("none");
+                                    }}
+                                >
+                                    <motion.div
+                                        whileHover={{
+                                            scale: 1.3,
+                                        }}
+                                    >
+                                        <div className="absolute top-0 left-0 bg-[black] opacity-50 w-full h-full"></div>
+                                        <Image
+                                            alt="red_grey"
+                                            src={
+                                                isHover ===
+                                                "red"
+                                                    ? red
+                                                    : red_grey
+                                            }
+                                            width={340}
+                                            height={340}
+                                        />
+                                    </motion.div>
+                                </motion.div>
+                                <motion.div
+                                    className="relative overflow-hidden"
+                                    initial={{
+                                        opacity: 0,
+                                        scale: 0,
+                                    }}
+                                    whileInView={{
+                                        opacity: 1,
+                                        scale: 1,
+                                    }}
+                                    viewport={{
+                                        once: true,
+                                    }}
+                                    transition={{
+                                        type: "spring",
+                                        damping: 30,
+                                        stiffness: 200,
+                                        delay: 0.3,
+                                    }}
+                                    onMouseEnter={() => {
+                                        setIsHover(
+                                            "orange"
+                                        );
+                                    }}
+                                    onMouseLeave={() => {
+                                        setIsHover("none");
+                                    }}
+                                >
+                                    <motion.div
+                                        whileHover={{
+                                            scale: 1.3,
+                                        }}
+                                    >
+                                        <Image
+                                            alt="orange_grey"
+                                            src={
+                                                isHover ===
+                                                "orange"
+                                                    ? orange
+                                                    : orange_grey
+                                            }
+                                            height={340}
+                                            className="flex-[1.0]"
+                                        />
+                                    </motion.div>
+                                </motion.div>
                             </div>
                             <div className="flex gap-[3rem]">
-                                <div className="relative">
-                                    <div className="absolute top-0 left-0 bg-[black] opacity-30 w-full h-full"></div>
-                                    <Image
-                                        src={green_grey}
-                                        width={340}
-                                        height={340}
-                                    />
-                                </div>
-                                <div className="relative">
-                                    <div className="absolute top-0 left-0 bg-[black] opacity-50 w-full h-full"></div>
-                                    <Image
-                                        src={blue_grey}
-                                        width={340}
-                                        height={340}
-                                    />
-                                </div>
-                                <div className="relative">
-                                    <div className="absolute top-0 left-0 bg-[black] opacity-20 w-full h-full"></div>
-                                    <Image
-                                        src={purple_grey}
-                                        height={340}
-                                        className="flex-[1.0]"
-                                    />
-                                </div>
+                                <motion.div
+                                    className="relative overflow-hidden"
+                                    initial={{
+                                        opacity: 0,
+                                        scale: 0,
+                                    }}
+                                    whileInView={{
+                                        opacity: 1,
+                                        scale: 1,
+                                    }}
+                                    viewport={{
+                                        once: true,
+                                    }}
+                                    transition={{
+                                        type: "spring",
+                                        damping: 30,
+                                        stiffness: 200,
+                                        delay: 0.5,
+                                    }}
+                                    onMouseEnter={() => {
+                                        setIsHover("green");
+                                    }}
+                                    onMouseLeave={() => {
+                                        setIsHover("none");
+                                    }}
+                                >
+                                    <motion.div
+                                        whileHover={{
+                                            scale: 1.3,
+                                        }}
+                                        transition={spring}
+                                    >
+                                        <Image
+                                            alt="green_grey"
+                                            src={
+                                                isHover ===
+                                                "green"
+                                                    ? green
+                                                    : green_grey
+                                            }
+                                            width={340}
+                                            height={340}
+                                        />
+                                    </motion.div>
+                                </motion.div>
+                                <motion.div
+                                    className="relative overflow-hidden w-[34rem] h-[34rem]"
+                                    initial={{
+                                        opacity: 0,
+                                        scale: 0,
+                                    }}
+                                    whileInView={{
+                                        opacity: 1,
+                                        scale: 1,
+                                    }}
+                                    viewport={{
+                                        once: true,
+                                    }}
+                                    transition={{
+                                        type: "spring",
+                                        damping: 30,
+                                        stiffness: 200,
+                                        delay: 0.4,
+                                    }}
+                                    onMouseEnter={() => {
+                                        setIsHover("blue");
+                                    }}
+                                    onMouseLeave={() => {
+                                        setIsHover("none");
+                                    }}
+                                >
+                                    <motion.div
+                                        whileHover={{
+                                            scale: 1.3,
+                                        }}
+                                        transition={spring}
+                                    >
+                                        <Image
+                                            alt="blue_grey"
+                                            src={
+                                                isHover ===
+                                                "blue"
+                                                    ? blue
+                                                    : blue_grey
+                                            }
+                                        />
+                                    </motion.div>
+                                </motion.div>
+                                <motion.div
+                                    className="relative overflow-hidden"
+                                    initial={{
+                                        opacity: 0,
+                                        scale: 0,
+                                    }}
+                                    whileInView={{
+                                        opacity: 1,
+                                        scale: 1,
+                                    }}
+                                    viewport={{
+                                        once: true,
+                                    }}
+                                    transition={{
+                                        type: "spring",
+                                        damping: 30,
+                                        stiffness: 200,
+                                        delay: 0.2,
+                                    }}
+                                    onMouseEnter={() => {
+                                        setIsHover(
+                                            "purple"
+                                        );
+                                    }}
+                                    onMouseLeave={() => {
+                                        setIsHover("none");
+                                    }}
+                                >
+                                    <motion.div
+                                        whileHover={{
+                                            scale: 1.3,
+                                        }}
+                                    >
+                                        <Image
+                                            alt="purple_grey"
+                                            src={
+                                                isHover ===
+                                                "purple"
+                                                    ? purple
+                                                    : purple_grey
+                                            }
+                                            height={340}
+                                            className="flex-[1.0]"
+                                        />
+                                    </motion.div>
+                                </motion.div>
                             </div>
                         </div>
                     </div>
                     <div className="bottom-banner w-full bg-primary60 h-[56rem] rounded-b-[13rem] flex flex-col mt-[15rem] ">
                         <div className="divider flex p-[8rem] items-center justify-between m-0">
-                            <div className="border border-y-[0.5px]  border-x-0 w-[40rem] m-0 relative">
-                                <div className="rounded-full w-[4px] h-[4px] bg-black100 absolute top-0 left-0 -translate-x-[50%] -translate-y-[50%]"></div>
-                                <div className="rounded-full w-[4px] h-[4px] bg-black100 absolute top-0 left-[100%] translate-x-[0%] -translate-y-[50%]"></div>
+                            <div className="w-[40rem] m-0 relative">
+                                <motion.div
+                                    className="border border-y-[0.5px] border-x-0 relative"
+                                    initial={{
+                                        width: 0,
+                                    }}
+                                    whileInView={{
+                                        width: "40rem",
+                                    }}
+                                    viewport={{
+                                        once: true,
+                                    }}
+                                    transition={{
+                                        ...spring,
+                                        delay: 0.4,
+                                    }}
+                                >
+                                    <motion.div
+                                        className="rounded-full w-[4px] h-[4px] bg-black100 absolute top-0 left-0 -translate-x-[50%] -translate-y-[50%]"
+                                        initial={{
+                                            opacity: 0,
+                                        }}
+                                        whileInView={{
+                                            opacity: 1,
+                                        }}
+                                        viewport={{
+                                            once: true,
+                                        }}
+                                        transition={{
+                                            delay: 0.6,
+                                        }}
+                                    ></motion.div>
+                                    <motion.div
+                                        className="rounded-full w-[4px] h-[4px] bg-black100 absolute top-0 left-[100%] translate-x-[0%] -translate-y-[50%]"
+                                        initial={{
+                                            opacity: 0,
+                                        }}
+                                        whileInView={{
+                                            opacity: 1,
+                                        }}
+                                        viewport={{
+                                            once: true,
+                                        }}
+                                        transition={{
+                                            delay: 0.6,
+                                        }}
+                                    ></motion.div>
+                                </motion.div>
                             </div>
                             <div className="icon_star_cont flex gap-[5rem] m-0">
-                                <Image
-                                    className="w-[3rem] h-[3rem] object-cover"
-                                    src={icon_star_black}
-                                />
-                                <Image
-                                    className="w-[3rem] h-[3rem] object-cover"
-                                    src={icon_star_black}
-                                />
-                                <Image
-                                    className="w-[3rem] h-[3rem] object-cover"
-                                    src={icon_star_black}
-                                />
+                                <motion.div
+                                    initial={{
+                                        scale: 0,
+                                    }}
+                                    whileInView={{
+                                        scale: 1,
+                                    }}
+                                    viewport={{
+                                        once: true,
+                                    }}
+                                    transition={{
+                                        ...spring,
+                                        delay: 0.2,
+                                    }}
+                                >
+                                    <Image
+                                        alt="icon_star_black"
+                                        className="w-[3rem] h-[3rem] object-cover"
+                                        src={
+                                            icon_star_black
+                                        }
+                                    />
+                                </motion.div>
+                                <motion.div
+                                    initial={{
+                                        scale: 0,
+                                    }}
+                                    whileInView={{
+                                        scale: 1,
+                                    }}
+                                    viewport={{
+                                        once: true,
+                                    }}
+                                    transition={{
+                                        ...spring,
+                                        delay: 0.0,
+                                    }}
+                                >
+                                    <Image
+                                        alt="icon_star_black"
+                                        className="w-[3rem] h-[3rem] object-cover"
+                                        src={
+                                            icon_star_black
+                                        }
+                                    />
+                                </motion.div>
+                                <motion.div
+                                    initial={{
+                                        scale: 0,
+                                    }}
+                                    whileInView={{
+                                        scale: 1,
+                                    }}
+                                    viewport={{
+                                        once: true,
+                                    }}
+                                    transition={{
+                                        ...spring,
+                                        delay: 0.4,
+                                    }}
+                                >
+                                    <Image
+                                        alt="icon_star_black"
+                                        className="w-[3rem] h-[3rem] object-cover"
+                                        src={
+                                            icon_star_black
+                                        }
+                                    />
+                                </motion.div>
                             </div>
-                            <div className="border border-y-[0.5px]  border-x-0 w-[40rem] m-0 relative">
-                                <div className="rounded-full w-[4px] h-[4px] bg-black100 absolute top-0 left-0 -translate-x-[50%] -translate-y-[50%]"></div>
-                                <div className="rounded-full w-[4px] h-[4px] bg-black100 absolute top-0 left-[100%] translate-x-[0%] -translate-y-[50%]"></div>
+                            <div className="w-[40rem] m-0 relative">
+                                <motion.div
+                                    className="border border-y-[0.5px] border-x-0 relative"
+                                    initial={{
+                                        width: 0,
+                                    }}
+                                    whileInView={{
+                                        width: "40rem",
+                                    }}
+                                    viewport={{
+                                        once: true,
+                                    }}
+                                    transition={{
+                                        ...spring,
+                                        delay: 0.4,
+                                    }}
+                                >
+                                    <motion.div
+                                        className="rounded-full w-[4px] h-[4px] bg-black100 absolute top-0 left-0 -translate-x-[50%] -translate-y-[50%]"
+                                        initial={{
+                                            opacity: 0,
+                                        }}
+                                        whileInView={{
+                                            opacity: 1,
+                                        }}
+                                        transition={{
+                                            delay: 0.6,
+                                        }}
+                                    ></motion.div>
+                                    <motion.div
+                                        className="rounded-full w-[4px] h-[4px] bg-black100 absolute top-0 left-[100%] translate-x-[0%] -translate-y-[50%]"
+                                        initial={{
+                                            opacity: 0,
+                                        }}
+                                        whileInView={{
+                                            opacity: 1,
+                                        }}
+                                        viewport={{
+                                            once: true,
+                                        }}
+                                        transition={{
+                                            delay: 0.6,
+                                        }}
+                                    ></motion.div>
+                                </motion.div>
                             </div>
                         </div>
-                        <div
+                        <motion.div
                             style={fontStyleUtil(
                                 "en",
                                 7.2,
                                 900,
                                 8.8
                             )}
+                            initial={{
+                                opacity: 0,
+                                x: -500,
+                            }}
+                            whileInView={{
+                                opacity: 1,
+                                x: 0,
+                            }}
+                            viewport={{ once: true }}
+                            transition={spring}
                         >
                             SHOW YOUR
-                        </div>
-                        <div
+                        </motion.div>
+                        <motion.div
                             style={fontStyleUtil(
                                 "en",
                                 7.2,
                                 900,
                                 8.8
                             )}
+                            initial={{
+                                opacity: 0,
+                                x: 500,
+                            }}
+                            whileInView={{
+                                opacity: 1,
+                                x: 0,
+                            }}
+                            viewport={{ once: true }}
+                            transition={spring}
                         >
                             COLORIZE IDEAS
-                        </div>
+                        </motion.div>
                         <div className="btn-Cont flex gap-[2rem] mt-[4rem]">
-                            <button
+                            <motion.button
                                 className="rounded-full bg-black100 text-primary60 border-black100 py-[2rem] px-[5rem]"
                                 style={fontStyleUtil(
                                     "en",
@@ -456,10 +1137,21 @@ function Landing() {
                                     400,
                                     1.8
                                 )}
+                                initial={{
+                                    scale: 0,
+                                }}
+                                whileInView={{
+                                    scale: 1,
+                                }}
+                                viewport={{ once: true }}
+                                transition={{
+                                    ...spring,
+                                }}
+                                whileHover={{ y: -10 }}
                             >
                                 TALKS NOW
-                            </button>
-                            <button
+                            </motion.button>
+                            <motion.button
                                 className="rounded-full bg-primary60 border border-black100 py-[2rem] px-[5rem]"
                                 style={fontStyleUtil(
                                     "en",
@@ -467,9 +1159,20 @@ function Landing() {
                                     400,
                                     1.8
                                 )}
+                                initial={{
+                                    scale: 0,
+                                }}
+                                whileInView={{
+                                    scale: 1,
+                                }}
+                                viewport={{ once: true }}
+                                transition={{
+                                    ...spring,
+                                }}
+                                whileHover={{ y: -10 }}
                             >
                                 FOLLOW US
-                            </button>
+                            </motion.button>
                         </div>
                     </div>
                 </div>
