@@ -4,6 +4,8 @@ import React, {
     useContext,
     useEffect,
     useState,
+    useMemo,
+    useRef,
 } from "react";
 import fontStyleUtil from "../util/fontStyle";
 import Image from "next/image";
@@ -12,6 +14,12 @@ import {
     spring,
     AnimatePresence,
     easeInOut,
+    useScroll,
+    useSpring,
+    useTransform,
+    useMotionValue,
+    useVelocity,
+    useAnimationFrame,
 } from "framer-motion";
 import styles from "../color.module.scss";
 
@@ -39,6 +47,7 @@ import blue_grey from "../../public/asset/img/BlueGrey.png";
 import purple from "../../public/asset/img/Purple.png";
 import purple_grey from "../../public/asset/img/PurpleGrey.png";
 import icon_star_black from "../../public/asset/img/icons/fillStar4Black.png";
+import { wrap } from "@motionone/utils";
 
 import { sheet } from "../data/sheet";
 import { UseContext } from "../store/store";
@@ -51,6 +60,86 @@ function Landing() {
     useEffect(() => {
         setIsPage("landing");
     }, []);
+
+    const ParallaxText = useMemo(
+        () =>
+            ({ children, baseVelocity = 100 }) => {
+                const baseX = useMotionValue(0);
+                const { scrollY } = useScroll();
+                const scrollVelocity = useVelocity(scrollY);
+                const smoothVelocity = useSpring(
+                    scrollVelocity,
+                    {
+                        damping: 50,
+                        stiffness: 400,
+                    }
+                );
+                const velocityFactor = useTransform(
+                    smoothVelocity,
+                    [0, 1000],
+                    [0, 5],
+                    {
+                        clamp: false,
+                    }
+                );
+
+                /**
+                 * This is a magic wrapping for the length of the text - you
+                 * have to replace for wrapping that works for you or dynamically
+                 * calculate
+                 */
+                const x = useTransform(
+                    baseX,
+                    (v) => `${wrap(0, -21.8, v)}%`
+                );
+
+                const directionFactor = useRef(1);
+                useAnimationFrame((t, delta) => {
+                    let moveBy =
+                        directionFactor.current *
+                        baseVelocity *
+                        (delta / 1000);
+
+                    /**
+                     * This is what changes the direction of the scroll once we
+                     * switch scrolling directions.
+                     */
+                    if (velocityFactor.get() < 0) {
+                        directionFactor.current = -1;
+                    } else if (velocityFactor.get() > 0) {
+                        directionFactor.current = 1;
+                    }
+
+                    moveBy +=
+                        directionFactor.current *
+                        moveBy *
+                        velocityFactor.get();
+
+                    baseX.set(baseX.get() + moveBy);
+                });
+
+                /**
+                 * The number of times to repeat the child text should be dynamically calculated
+                 * based on the size of the text and viewport. Likewise, the x motion value is
+                 * currently wrapped between -20 and -45% - this 25% is derived from the fact
+                 * we have four children (100% / 4). This would also want deriving from the
+                 * dynamically generated number of children.
+                 */
+                return (
+                    <motion.div
+                        className="scroller flex w-fit gap-[4rem] items-center h-full"
+                        style={{ x }}
+                    >
+                        {children}
+                        {children}
+                        {children}
+                        {children}
+                        {children}
+                    </motion.div>
+                );
+            },
+        []
+    );
 
     return (
         <div className="landing pt-[10rem] ">
@@ -306,41 +395,43 @@ function Landing() {
             </div>
             <div
                 id="cont2"
-                className="w-[100%] bg-black100 h-fit pb-[18rem]"
+                className="w-full bg-black100 h-fit pb-[18rem] overflow-x-hidden relative"
             >
-                <div className="band bg-[#000000] w-full h-[15rem] flex gap-[4rem]">
-                    <div
-                        className="text-primary60 flex items-center m-0"
-                        style={fontStyleUtil(
-                            "en",
-                            7.2,
-                            900,
-                            8.8
-                        )}
-                    >
-                        PIGMENTREE
-                    </div>
-                    <Image
-                        alt="icon_star4"
-                        src={icon_star4}
-                        className="w-[5rem] object-contain m-0"
-                    />
-                    <div
-                        className="text-primary60 flex items-center m-0"
-                        style={fontStyleUtil(
-                            "en",
-                            7.2,
-                            900,
-                            8.8
-                        )}
-                    >
-                        COLORIZE IDEAS
-                    </div>
-                    <Image
-                        alt="icon_star4"
-                        src={icon_star4}
-                        className="w-[5rem] object-contain m-0"
-                    />
+                <div className="band bg-[#000000] w-fit h-[15rem]">
+                    <ParallaxText baseVelocity={3}>
+                        <div
+                            className="text-primary60 flex items-center m-0"
+                            style={fontStyleUtil(
+                                "en",
+                                7.2,
+                                900,
+                                8.8
+                            )}
+                        >
+                            PIGMENTREE
+                        </div>
+                        <Image
+                            alt="icon_star4"
+                            src={icon_star4}
+                            className="w-[5rem] h-[5rem] object-contain m-0"
+                        />
+                        <div
+                            className="text-primary60 flex items-center m-0 w-fit"
+                            style={fontStyleUtil(
+                                "en",
+                                7.2,
+                                900,
+                                8.8
+                            )}
+                        >
+                            COLORIZE&nbsp;IDEAS
+                        </div>
+                        <Image
+                            alt="icon_star4"
+                            src={icon_star4}
+                            className="w-[5rem] h-[5rem] object-contain m-0"
+                        />
+                    </ParallaxText>
                 </div>
                 <div className="wrapper w-[128rem] mx-auto">
                     <motion.div
@@ -536,6 +627,12 @@ function Landing() {
                                 delay: 0.2,
                                 duration: 1,
                             }}
+                            onMouseEnter={() => {
+                                setIsHover("sample10");
+                            }}
+                            onMouseLeave={() => {
+                                setIsHover("none");
+                            }}
                         >
                             <div className="m-0 text-black80 ml-[4rem] flex items-center gap-[2rem]">
                                 <p
@@ -547,9 +644,34 @@ function Landing() {
                                 >
                                     샘플 10종
                                 </p>
-                                {/* <div className="w-[1rem] h-[1rem] bg-primary100 rounded-full"></div> */}
+                                <AnimatePresence>
+                                    {isHover ===
+                                        "sample10" && (
+                                        <motion.div
+                                            initial={{
+                                                opacity: 0,
+                                                x: -10,
+                                            }}
+                                            animate={{
+                                                opacity: 1,
+                                                x: 0,
+                                            }}
+                                            exit={{
+                                                opacity: 0,
+                                                x: -10,
+                                            }}
+                                            className="w-[1rem] h-[1rem] bg-primary100 rounded-full"
+                                        ></motion.div>
+                                    )}
+                                </AnimatePresence>
                             </div>
-                            <div className="m-0 w-[12rem] h-[12rem] flex items-center bg-black100">
+                            <div
+                                className={`m-0 w-[12rem] h-[12rem] flex items-center transition-all duration-300  ${
+                                    isHover === "sample10"
+                                        ? "bg-primary100"
+                                        : "bg-black100"
+                                }`}
+                            >
                                 <Image
                                     alt={"icon_arrowGrey"}
                                     height={"40"}
@@ -572,6 +694,12 @@ function Landing() {
                                 delay: 0.2,
                                 duration: 1,
                             }}
+                            onMouseEnter={() => {
+                                setIsHover("single");
+                            }}
+                            onMouseLeave={() => {
+                                setIsHover("none");
+                            }}
                         >
                             <div className="m-0 text-black80 ml-[4rem] flex items-center gap-[2rem]">
                                 <p
@@ -583,9 +711,35 @@ function Landing() {
                                 >
                                     단품 구매
                                 </p>
-                                {/* <div className="w-[1rem] h-[1rem] bg-primary100 rounded-full"></div> */}
+                                <AnimatePresence>
+                                    {isHover ===
+                                        "single" && (
+                                        <motion.div
+                                            initial={{
+                                                opacity: 0,
+                                                x: -10,
+                                            }}
+                                            animate={{
+                                                opacity: 1,
+                                                x: 0,
+                                            }}
+                                            exit={{
+                                                opacity: 0,
+                                                x: -10,
+                                            }}
+                                            className="w-[1rem] h-[1rem] bg-primary100 rounded-full"
+                                        ></motion.div>
+                                    )}
+                                </AnimatePresence>
                             </div>
-                            <div className="m-0 w-[12rem] h-[12rem] flex items-center bg-black100">
+
+                            <div
+                                className={`m-0 w-[12rem] h-[12rem] flex items-center transition-all duration-300  ${
+                                    isHover === "single"
+                                        ? "bg-primary100"
+                                        : "bg-black100"
+                                }`}
+                            >
                                 <Image
                                     alt="icon_arrowGrey"
                                     height={"40"}
@@ -608,6 +762,12 @@ function Landing() {
                                 delay: 0.2,
                                 duration: 1,
                             }}
+                            onMouseEnter={() => {
+                                setIsHover("bulk");
+                            }}
+                            onMouseLeave={() => {
+                                setIsHover("none");
+                            }}
                         >
                             <div className="m-0 text-black80 ml-[4rem] flex items-center gap-[2rem]">
                                 <p
@@ -619,9 +779,33 @@ function Landing() {
                                 >
                                     벌크 구매
                                 </p>
-                                {/* <div className="w-[1rem] h-[1rem] bg-primary100 rounded-full"></div> */}
+                                <AnimatePresence>
+                                    {isHover === "bulk" && (
+                                        <motion.div
+                                            initial={{
+                                                opacity: 0,
+                                                x: -10,
+                                            }}
+                                            animate={{
+                                                opacity: 1,
+                                                x: 0,
+                                            }}
+                                            exit={{
+                                                opacity: 0,
+                                                x: -10,
+                                            }}
+                                            className="w-[1rem] h-[1rem] bg-primary100 rounded-full"
+                                        ></motion.div>
+                                    )}
+                                </AnimatePresence>
                             </div>
-                            <div className="m-0 w-[12rem] h-[12rem] flex items-center bg-black100">
+                            <div
+                                className={`m-0 w-[12rem] h-[12rem] flex items-center transition-all duration-300  ${
+                                    isHover === "bulk"
+                                        ? "bg-primary100"
+                                        : "bg-black100"
+                                }`}
+                            >
                                 <Image
                                     alt="icon_arrowGrey"
                                     height={"40"}
