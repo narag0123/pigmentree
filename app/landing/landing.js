@@ -374,7 +374,24 @@ function Landing() {
                         </motion.div>
                     </div>
                 </div>
-                <div className="img-bottom-cont  mt-[10rem]  relative">
+                <motion.div
+                    className="img-bottom-cont  mt-[10rem]  relative"
+                    initial={{
+                        y: 100,
+                        opacity: 0,
+                    }}
+                    whileInView={{
+                        y: 0,
+                        opacity: 1,
+                        transition: {
+                            type: "spring",
+                            damping: 25,
+                            stiffness: 1000,
+                            duration: 0.5,
+                        },
+                    }}
+                    viewport={{ once: true }}
+                >
                     <div className="rounded-full bg-black100 w-[20rem] h-[20rem] absolute top-0 -translate-y-[50%] right-[13rem] z-0 flex justify-center items-center">
                         <Image
                             alt="icon_arrow"
@@ -391,7 +408,7 @@ function Landing() {
                             className="cursor-pointer object-cover"
                         />
                     </div>
-                </div>
+                </motion.div>
             </div>
             <div
                 id="cont2"
@@ -611,9 +628,9 @@ function Landing() {
                             </div>
                         </div>
                     </div>
-                    <div className="purchaseLink w-full py-[10rem] ">
+                    <div className="purchaseLink w-full py-[10rem]">
                         <motion.div
-                            className="w-full h-[15rem] border border-y-black80 border-x-0 flex justify-between items-center"
+                            className={`w-full h-[15rem] bg-black100 border border-y-black80 border-x-0 flex justify-between items-center cursor-pointer relative overflow-hidden`}
                             initial={{
                                 opacity: 0,
                                 x: -100,
@@ -621,29 +638,49 @@ function Landing() {
                             whileInView={{
                                 opacity: 1,
                                 x: 0,
+                                transition: {
+                                    delay: 0.2,
+                                    duration: 1,
+                                },
                             }}
                             viewport={{ once: true }}
-                            transition={{
-                                delay: 0.2,
-                                duration: 1,
-                            }}
+                            whileHover={"hover"}
                             onMouseEnter={() => {
                                 setIsHover("sample10");
                             }}
                             onMouseLeave={() => {
                                 setIsHover("none");
                             }}
+                            variants={{
+                                hover: {
+                                    backgroundColor:
+                                        "#232323",
+                                    transition: {
+                                        spring,
+                                        duration: 0.2,
+                                    },
+                                },
+                            }}
                         >
-                            <div className="m-0 text-black80 ml-[4rem] flex items-center gap-[2rem]">
-                                <p
+                            <motion.div className="m-0 text-black80 ml-[4rem] flex items-center gap-[2rem] z-0">
+                                <motion.p
                                     style={fontStyleUtil(
                                         "kr",
                                         4,
                                         700
                                     )}
+                                    variants={{
+                                        hover: {
+                                            color: styles.black20,
+                                            transition: {
+                                                spring,
+                                                duration: 0.2,
+                                            },
+                                        },
+                                    }}
                                 >
                                     샘플 10종
-                                </p>
+                                </motion.p>
                                 <AnimatePresence>
                                     {isHover ===
                                         "sample10" && (
@@ -664,12 +701,12 @@ function Landing() {
                                         ></motion.div>
                                     )}
                                 </AnimatePresence>
-                            </div>
+                            </motion.div>
                             <div
-                                className={`m-0 w-[12rem] h-[12rem] flex items-center transition-all duration-300  ${
+                                className={`z-0 m-0 w-[12rem] h-[12rem] flex items-center transition-all duration-300 rounded-lg ${
                                     isHover === "sample10"
                                         ? "bg-primary100"
-                                        : "bg-black100"
+                                        : "none"
                                 }`}
                             >
                                 <Image
@@ -680,7 +717,7 @@ function Landing() {
                             </div>
                         </motion.div>
                         <motion.div
-                            className="w-full h-[15rem] border border-y-black80 border-x-0 flex justify-between items-center"
+                            className="w-full h-[15rem] border border-y-black80 border-x-0 flex justify-between items-center cursor-pointer"
                             initial={{
                                 opacity: 0,
                                 x: -100,
@@ -688,29 +725,49 @@ function Landing() {
                             whileInView={{
                                 opacity: 1,
                                 x: 0,
+                                transition: {
+                                    delay: 0.2,
+                                    duration: 1,
+                                },
                             }}
                             viewport={{ once: true }}
-                            transition={{
-                                delay: 0.2,
-                                duration: 1,
-                            }}
                             onMouseEnter={() => {
                                 setIsHover("single");
                             }}
                             onMouseLeave={() => {
                                 setIsHover("none");
                             }}
+                            whileHover={"hover"}
+                            variants={{
+                                hover: {
+                                    backgroundColor:
+                                        "#232323",
+                                    transition: {
+                                        spring,
+                                        duration: 0.2,
+                                    },
+                                },
+                            }}
                         >
-                            <div className="m-0 text-black80 ml-[4rem] flex items-center gap-[2rem]">
-                                <p
+                            <motion.div className="m-0 text-black80 ml-[4rem] flex items-center gap-[2rem]">
+                                <motion.p
                                     style={fontStyleUtil(
                                         "kr",
                                         4,
                                         700
                                     )}
+                                    variants={{
+                                        hover: {
+                                            color: styles.black20,
+                                            transition: {
+                                                spring,
+                                                duration: 0.2,
+                                            },
+                                        },
+                                    }}
                                 >
                                     단품 구매
-                                </p>
+                                </motion.p>
                                 <AnimatePresence>
                                     {isHover ===
                                         "single" && (
@@ -731,10 +788,10 @@ function Landing() {
                                         ></motion.div>
                                     )}
                                 </AnimatePresence>
-                            </div>
+                            </motion.div>
 
                             <div
-                                className={`m-0 w-[12rem] h-[12rem] flex items-center transition-all duration-300  ${
+                                className={`m-0 w-[12rem] h-[12rem] flex items-center transition-all duration-300 rounded-lg ${
                                     isHover === "single"
                                         ? "bg-primary100"
                                         : "bg-black100"
@@ -748,7 +805,7 @@ function Landing() {
                             </div>
                         </motion.div>
                         <motion.div
-                            className="w-full h-[15rem] border border-y-black80 border-x-0 flex justify-between items-center"
+                            className="w-full h-[15rem] border border-y-black80 border-x-0 flex justify-between items-center cursor-pointer"
                             initial={{
                                 opacity: 0,
                                 x: -100,
@@ -756,29 +813,49 @@ function Landing() {
                             whileInView={{
                                 opacity: 1,
                                 x: 0,
+                                transition: {
+                                    delay: 0.2,
+                                    duration: 1,
+                                },
                             }}
                             viewport={{ once: true }}
-                            transition={{
-                                delay: 0.2,
-                                duration: 1,
-                            }}
                             onMouseEnter={() => {
                                 setIsHover("bulk");
                             }}
                             onMouseLeave={() => {
                                 setIsHover("none");
                             }}
+                            whileHover={"hover"}
+                            variants={{
+                                hover: {
+                                    backgroundColor:
+                                        "#232323",
+                                    transition: {
+                                        spring,
+                                        duration: 0.2,
+                                    },
+                                },
+                            }}
                         >
-                            <div className="m-0 text-black80 ml-[4rem] flex items-center gap-[2rem]">
-                                <p
+                            <motion.div className="m-0 text-black80 ml-[4rem] flex items-center gap-[2rem]">
+                                <motion.p
                                     style={fontStyleUtil(
                                         "kr",
                                         4,
                                         700
                                     )}
+                                    variants={{
+                                        hover: {
+                                            color: styles.black20,
+                                            transition: {
+                                                spring,
+                                                duration: 0.2,
+                                            },
+                                        },
+                                    }}
                                 >
                                     벌크 구매
-                                </p>
+                                </motion.p>
                                 <AnimatePresence>
                                     {isHover === "bulk" && (
                                         <motion.div
@@ -798,9 +875,9 @@ function Landing() {
                                         ></motion.div>
                                     )}
                                 </AnimatePresence>
-                            </div>
+                            </motion.div>
                             <div
-                                className={`m-0 w-[12rem] h-[12rem] flex items-center transition-all duration-300  ${
+                                className={`m-0 w-[12rem] h-[12rem] flex items-center transition-all duration-300 rounded-lg ${
                                     isHover === "bulk"
                                         ? "bg-primary100"
                                         : "bg-black100"
@@ -874,7 +951,7 @@ function Landing() {
                         <div className="image-cont flex flex-col gap-[3rem]">
                             <div className="flex gap-[3rem]">
                                 <motion.div
-                                    className="relative overflow-hidden"
+                                    className="relative overflow-hidden cursor-pointer"
                                     initial={{
                                         opacity: 0,
                                         scale: 0,
@@ -919,7 +996,7 @@ function Landing() {
                                     </motion.div>
                                 </motion.div>
                                 <motion.div
-                                    className="relative overflow-hidden"
+                                    className="relative overflow-hidden cursor-pointer"
                                     initial={{
                                         opacity: 0,
                                         scale: 0,
@@ -967,7 +1044,7 @@ function Landing() {
                             </div>
                             <div className="flex gap-[3rem]">
                                 <motion.div
-                                    className="relative overflow-hidden"
+                                    className="relative overflow-hidden cursor-pointer"
                                     initial={{
                                         opacity: 0,
                                         scale: 0,
@@ -1012,7 +1089,7 @@ function Landing() {
                                     </motion.div>
                                 </motion.div>
                                 <motion.div
-                                    className="relative overflow-hidden w-[34rem] h-[34rem]"
+                                    className="relative overflow-hidden w-[34rem] h-[34rem] cursor-pointer"
                                     initial={{
                                         opacity: 0,
                                         scale: 0,
@@ -1055,7 +1132,7 @@ function Landing() {
                                     </motion.div>
                                 </motion.div>
                                 <motion.div
-                                    className="relative overflow-hidden"
+                                    className="relative overflow-hidden cursor-pointer"
                                     initial={{
                                         opacity: 0,
                                         scale: 0,
