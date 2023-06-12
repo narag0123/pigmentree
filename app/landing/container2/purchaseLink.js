@@ -26,7 +26,7 @@ export default function PurchaseLink({
             stateName: "single",
         },
         {
-            id: 0,
+            id: 2,
             name: "벌크 구매",
             stateName: "bulk",
         },

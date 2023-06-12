@@ -265,7 +265,7 @@ export default function Container({}) {
                     <Image
                         alt="explosion"
                         src={explosion}
-                        loading="lazy"
+                        priority
                         className="cursor-pointer object-cover"
                     />
                 </div>

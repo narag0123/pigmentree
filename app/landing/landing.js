@@ -22,12 +22,8 @@ function Landing() {
     const context = useContext(UseContext);
     const { isPage, setIsPage } = context;
     const [isHover, setIsHover] = useState("none");
-    // let a = usePathname();
 
-    useEffect(() => {
-        // setIsPage(a);
-        // console.log(isPage);
-    }, []);
+    useEffect(() => {}, []);
 
     return (
         <div className="landing pt-[10rem]">

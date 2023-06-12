@@ -96,10 +96,35 @@ export default function BestService({
                         onMouseLeave={() => {
                             setIsHover("none");
                         }}
+                        whileHover={"hover"}
                     >
                         <motion.div
-                            whileHover={{
-                                scale: 1.3,
+                            className="absolute top-1/2 left-1/2 z-10 bg-black100 text-primary100 -translate-x-1/2 -translate-y-1/2 px-[5rem] py-[1rem]"
+                            initial={{ opacity: 0 }}
+                            variants={{
+                                hover: {
+                                    opacity: 1,
+                                    transition: {
+                                        delay: 0.1,
+                                    },
+                                },
+                            }}
+                            style={{
+                                ...fontStyleUtil(
+                                    "en",
+                                    4.4,
+                                    900,
+                                    5
+                                ),
+                                boxShadow: "10px 10px 0 ",
+                            }}
+                        >
+                            RED
+                        </motion.div>
+                        <motion.div
+                            className="flex justify-center items-center"
+                            variants={{
+                                hover: { scale: 1.3 },
                             }}
                         >
                             <div className="absolute top-0 left-0 bg-[black] opacity-50 w-full h-full"></div>
@@ -140,10 +165,36 @@ export default function BestService({
                         onMouseLeave={() => {
                             setIsHover("none");
                         }}
+                        whileHover={"hover"}
                     >
                         <motion.div
-                            whileHover={{
-                                scale: 1.3,
+                            className="absolute top-1/2 left-1/2 z-10 bg-black100 text-primary100 -translate-x-1/2 -translate-y-1/2 px-[5rem] py-[1rem]"
+                            initial={{ opacity: 0 }}
+                            variants={{
+                                hover: {
+                                    opacity: 1,
+                                    transition: {
+                                        delay: 0.1,
+                                    },
+                                },
+                            }}
+                            style={{
+                                ...fontStyleUtil(
+                                    "en",
+                                    4.4,
+                                    900,
+                                    5
+                                ),
+                                boxShadow: "10px 10px 0 ",
+                            }}
+                        >
+                            ORANGE
+                        </motion.div>
+                        <motion.div
+                            variants={{
+                                hover: {
+                                    scale: 1.3,
+                                },
                             }}
                         >
                             <Image
@@ -185,10 +236,34 @@ export default function BestService({
                         onMouseLeave={() => {
                             setIsHover("none");
                         }}
+                        whileHover={"hover"}
                     >
                         <motion.div
-                            whileHover={{
-                                scale: 1.3,
+                            className="absolute top-1/2 left-1/2 z-10 bg-black100 text-primary100 -translate-x-1/2 -translate-y-1/2 px-[5rem] py-[1rem]"
+                            initial={{ opacity: 0 }}
+                            variants={{
+                                hover: {
+                                    opacity: 1,
+                                    transition: {
+                                        delay: 0.1,
+                                    },
+                                },
+                            }}
+                            style={{
+                                ...fontStyleUtil(
+                                    "en",
+                                    4.4,
+                                    900,
+                                    5
+                                ),
+                                boxShadow: "10px 10px 0 ",
+                            }}
+                        >
+                            GREEN
+                        </motion.div>
+                        <motion.div
+                            variants={{
+                                hover: { scale: 1.3 },
                             }}
                             transition={spring}
                         >
@@ -229,10 +304,36 @@ export default function BestService({
                         onMouseLeave={() => {
                             setIsHover("none");
                         }}
+                        whileHover={"hover"}
                     >
                         <motion.div
-                            whileHover={{
-                                scale: 1.3,
+                            className="absolute top-1/2 left-1/2 z-10 bg-black100 text-primary100 -translate-x-1/2 -translate-y-1/2 px-[5rem] py-[1rem]"
+                            initial={{ opacity: 0 }}
+                            variants={{
+                                hover: {
+                                    opacity: 1,
+                                    transition: {
+                                        delay: 0.1,
+                                    },
+                                },
+                            }}
+                            style={{
+                                ...fontStyleUtil(
+                                    "en",
+                                    4.4,
+                                    900,
+                                    5
+                                ),
+                                boxShadow: "10px 10px 0 ",
+                            }}
+                        >
+                            BLUE
+                        </motion.div>
+                        <motion.div
+                            variants={{
+                                hover: {
+                                    scale: 1.3,
+                                },
                             }}
                             transition={spring}
                         >
@@ -271,10 +372,36 @@ export default function BestService({
                         onMouseLeave={() => {
                             setIsHover("none");
                         }}
+                        whileHover={"hover"}
                     >
                         <motion.div
-                            whileHover={{
-                                scale: 1.3,
+                            className="absolute top-1/2 left-1/2 z-10 bg-black100 text-primary100 -translate-x-1/2 -translate-y-1/2 px-[5rem] py-[1rem]"
+                            initial={{ opacity: 0 }}
+                            variants={{
+                                hover: {
+                                    opacity: 1,
+                                    transition: {
+                                        delay: 0.1,
+                                    },
+                                },
+                            }}
+                            style={{
+                                ...fontStyleUtil(
+                                    "en",
+                                    4.4,
+                                    900,
+                                    5
+                                ),
+                                boxShadow: "10px 10px 0 ",
+                            }}
+                        >
+                            PURPLE
+                        </motion.div>
+                        <motion.div
+                            variants={{
+                                hover: {
+                                    scale: 1.3,
+                                },
                             }}
                         >
                             <Image

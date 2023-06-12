@@ -185,25 +185,20 @@ export default function Container2({}) {
                         <motion.div
                             className="faceUnit w-[27rem] h-[28.5rem] relative flex items-end justify-center"
                             key={e.id}
-                            initial={
-                                i % 2 === 0
-                                    ? {
-                                          opacity: 0,
-                                          rotateY: -180,
-                                      }
-                                    : {
-                                          opacity: 0,
-                                          rotateY: 180,
-                                      }
-                            }
+                            initial={{
+                                opacity: 0,
+                                clipPath:
+                                    "inset(0 100% 0 0)",
+                            }}
                             whileInView={{
                                 opacity: 1,
-                                rotateY: 0,
+                                clipPath:
+                                    "inset(0 -100% -100% 0)",
                                 transition:
                                     i % 2 === 0
                                         ? {
                                               delay: 0.6,
-                                              duration: 0.75,
+                                              duration: 1,
                                               ease: [
                                                   0.7, 0.25,
                                                   0.25, 0.9,
@@ -211,7 +206,7 @@ export default function Container2({}) {
                                           }
                                         : {
                                               delay: 0.3,
-                                              duration: 0.75,
+                                              duration: 1,
                                               ease: [
                                                   0.7, 0.25,
                                                   0.25, 0.9,
