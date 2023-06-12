@@ -4,6 +4,7 @@ import fontStyleUtil from "../util/fontStyle";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { UseContext } from "../store/store";
+import { usePathname } from "next/navigation";
 
 function Header() {
     const context = useContext(UseContext);
@@ -37,8 +38,7 @@ function Header() {
                 href={"/"}
                 className="logo m-0"
                 onClick={() => {
-                    setIsPage("landing");
-                    console.log(isPage);
+                    setIsPage("/");
                 }}
             >
                 <motion.p
@@ -63,10 +63,10 @@ function Header() {
                     <Link
                         className="relative"
                         href={`/${e.value}`}
-                        onClick={() => {
-                            setIsPage(e.value);
-                        }}
                         key={e.id}
+                        onClick={() => {
+                            setIsPage("/" + e.value);
+                        }}
                     >
                         <motion.p
                             whileHover={{
@@ -76,7 +76,7 @@ function Header() {
                             {e.name}
                         </motion.p>
                         <AnimatePresence>
-                            {isPage === e.value ? (
+                            {isPage === "/" + e.value ? (
                                 <motion.div
                                     className="rounded-full w-[0.8rem] h-[0.8rem] border-[1px] border-black100 mt-[1rem]"
                                     initial={{

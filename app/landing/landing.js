@@ -4,11 +4,7 @@ import React, {
     useContext,
     useEffect,
     useState,
-    useMemo,
-    useRef,
 } from "react";
-import fontStyleUtil from "../util/fontStyle";
-import Image from "next/image";
 
 import styles from "../color.module.scss";
 
@@ -20,14 +16,17 @@ import OurProduct from "./container2/ourProduct";
 import PurchaseLink from "./container2/purchaseLink";
 import BestService from "./container2/bestService";
 import BottomBanner from "./container2/bottomBanner";
+import { usePathname } from "next/navigation";
 
 function Landing() {
     const context = useContext(UseContext);
     const { isPage, setIsPage } = context;
     const [isHover, setIsHover] = useState("none");
+    // let a = usePathname();
 
     useEffect(() => {
-        setIsPage("landing");
+        // setIsPage(a);
+        // console.log(isPage);
     }, []);
 
     return (
