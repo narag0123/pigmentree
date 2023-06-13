@@ -15,7 +15,12 @@ import { product } from "../data/product";
 
 function Product() {
     const context = useContext(UseContext);
-    const { showItems, setShowItems } = context;
+    const {
+        showItems,
+        setShowItems,
+        isProduct,
+        setIsProduct,
+    } = context;
 
     const toggleHandler = (state) => {
         const index = product.findIndex(
@@ -33,8 +38,24 @@ function Product() {
         }
     };
 
+    const toggleOneTimeHandler = (state) => {
+        const index = product.findIndex(
+            (e) => e.state === state
+        );
+        if (index !== -1) {
+            setShowItems((prevShowItems) => {
+                const updatedShowItems = [...prevShowItems];
+                updatedShowItems[index] = {
+                    ...updatedShowItems[index],
+                    toggle: true,
+                };
+                return updatedShowItems;
+            });
+        }
+    };
+
     return (
-        <div className="product min-h-[100vh] h-full">
+        <div className="product min-h-[100vh]">
             <div className="sort flex wrapper w-[128rem] py-[2rem]">
                 <div className="divider flex-[0.2] m-0"></div>
                 <div
@@ -44,12 +65,17 @@ function Product() {
                     {product.map((e, i) => (
                         <div
                             key={e.id}
-                            className={`m-0 ${
-                                showItems[i].toggle &&
+                            className={`m-0 cursor-pointer ${
+                                isProduct ===
+                                    product[i].state &&
                                 "font-bold"
                             }`}
                             onClick={() => {
-                                toggleHandler(
+                                toggleOneTimeHandler(
+                                    product[i].state
+                                );
+
+                                setIsProduct(
                                     product[i].state
                                 );
                             }}
@@ -77,8 +103,8 @@ function Product() {
                     FILTER
                 </div>
             </div>
-            <div className="sort flex wrapper w-[128rem]">
-                <div className="nav flex-[0.2] m-0 border-black100 border-r-[1px] h-[100vh]">
+            <div className="sort flex wrapper w-[128rem] h-full">
+                <div className="nav flex-[0.2] m-0 border-black100 border-r-[1px] min-h-[100vh]">
                     {product.map((e, i) => (
                         <div
                             className="itemsList border-black80 border-b-[1px] py-[2rem] flex flex-col"
@@ -88,6 +114,9 @@ function Product() {
                                 className="itemTitle flex items-center justify-between pr-[3rem] m-0 cursor-pointer"
                                 onClick={() => {
                                     toggleHandler(
+                                        product[i].state
+                                    );
+                                    setIsProduct(
                                         product[i].state
                                     );
                                 }}
@@ -144,6 +173,14 @@ function Product() {
                                             (e, n) => (
                                                 // 세부 품목
                                                 <motion.div
+                                                    onClick={() => {
+                                                        // setIsProduct(
+                                                        //     product[
+                                                        //         i
+                                                        //     ]
+                                                        //         .state
+                                                        // );
+                                                    }}
                                                     key={
                                                         e.id
                                                     }
@@ -180,18 +217,57 @@ function Product() {
                             </AnimatePresence>
                         </div>
                     ))}
-                </div>
-                <div className="content m-0 flex-[0.8] p-[2rem]">
-                    right
-                    <div
-                        className="bg-black100 w-[10rem] h-[10rem]"
-                        style={{
-                            clipPath:
-                                "inset(0% 0% 50px 0%)",
-                        }}
-                    >
+                    {/* <div className="h-full bg-black60 spacer">
                         123
-                    </div>
+                    </div> */}
+                </div>
+                <div className="content-right m-0 flex-[0.8] p-[2rem] grid grid-cols-3 gap-[2rem] border-black100 ">
+                    {product.map(
+                        (e, i) =>
+                            isProduct ===
+                                product[i].state &&
+                            product[i].list.map((e, i) => (
+                                <div
+                                    className="border-black100 border-[1px] w-[32rem] h-[43rem] flex flex-col items-center"
+                                    key={i}
+                                >
+                                    <div className="w-[calc(100%-2rem)] border-black100 border-[1px] m-[1rem] flex-[0.83]">
+                                        이미지 자리임
+                                    </div>
+                                    <div className="w-full border-black100 border-t-[1px] flex flex-col justify-center items-center flex-[0.17] p-[1rem] gap-[.2rem]">
+                                        <div
+                                            className="m-0 w-full"
+                                            style={fontStyleUtil(
+                                                "en",
+                                                1.8,
+                                                900,
+                                                2.4
+                                            )}
+                                        >
+                                            MICA{" "}
+                                            {" " + e.eName}
+                                        </div>
+                                        <div
+                                            className="flex justify-between m-0 w-full"
+                                            style={fontStyleUtil(
+                                                "en",
+                                                1.8,
+                                                400,
+                                                2
+                                            )}
+                                        >
+                                            <div className="m-0">
+                                                {e.tags}
+                                            </div>
+                                            <div className="m-0">
+                                                ￦{" "}
+                                                {e.price10.toLocaleString()}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))
+                    )}
                 </div>
             </div>
         </div>

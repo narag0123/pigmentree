@@ -14,6 +14,7 @@ const UseProvider = ({ children }) => {
         { name: "single", toggle: false },
         { name: "package", toggle: false },
     ]);
+    const [isProduct, setIsProduct] = useState("single");
 
     return (
         <UseContext.Provider
@@ -22,6 +23,8 @@ const UseProvider = ({ children }) => {
                 setIsPage,
                 showItems,
                 setShowItems,
+                isProduct,
+                setIsProduct,
             }}
         >
             {children}

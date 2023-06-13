@@ -1,9 +1,9 @@
 import "./globals.scss";
 import styles from "./color.module.scss";
 import Header from "./nav/header";
-import fontStyleUtil from "./util/fontStyle";
 import Footer from "./nav/footer";
 import UseProvider, { UseContext } from "./store/store";
+import Head from "next/head";
 
 export const metadata = {
     title: "Welcome to Pigmentree",

@@ -23,8 +23,6 @@ function Landing() {
     const { isPage, setIsPage } = context;
     const [isHover, setIsHover] = useState("none");
 
-    useEffect(() => {}, []);
-
     return (
         <div className="landing pt-[10rem]">
             <Container />
