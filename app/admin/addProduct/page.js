@@ -1,15 +1,15 @@
 import fontStyleUtil from "@/app/util/fontStyle";
 import React from "react";
-import { connectDB } from "../../util/database.js";
+// import { connectDB } from "../../util/database.js";
 
 export default async function addProduct() {
     const db = (await connectDB).db("Pigmentree");
-    const result = await db
-        .collection("main_category")
-        .find()
-        .toArray();
+    // const result = await db
+    //     .collection("main_category")
+    //     .find()
+    //     .toArray();
 
-    console.log(result);
+    // console.log(result);
 
     return (
         <div className="wrapper w-[128rem] min-h-[calc(100vh-24.2rem)]">
@@ -161,12 +161,12 @@ export default async function addProduct() {
                 </button>
             </form>
             <div>
-                {result.map((e, i) => (
+                {/* {result.map((e, i) => (
                     <div>
                         <div>{e._id}</div>
                         <div>{e.name}</div>
                     </div>
-                ))}
+                ))} */}
             </div>
         </div>
     );
