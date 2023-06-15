@@ -1,8 +1,16 @@
-"use client";
 import fontStyleUtil from "@/app/util/fontStyle";
-import React, { useState } from "react";
+import React from "react";
+import { connectDB } from "../../util/database.js";
 
-async function addProduct() {
+export default async function addProduct() {
+    const db = (await connectDB).db("Pigmentree");
+    const result = await db
+        .collection("main_category")
+        .find()
+        .toArray();
+
+    console.log(result);
+
     return (
         <div className="wrapper w-[128rem] min-h-[calc(100vh-24.2rem)]">
             <form
@@ -152,8 +160,14 @@ async function addProduct() {
                     전송
                 </button>
             </form>
+            <div>
+                {result.map((e, i) => (
+                    <div>
+                        <div>{e._id}</div>
+                        <div>{e.name}</div>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 }
-
-export default addProduct;
