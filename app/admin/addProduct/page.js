@@ -1,8 +1,8 @@
 "use client";
 import fontStyleUtil from "@/app/util/fontStyle";
-import React from "react";
+import React, { useState } from "react";
 
-function addProduct() {
+async function addProduct() {
     return (
         <div className="wrapper w-[128rem] min-h-[calc(100vh-24.2rem)]">
             <form
@@ -42,7 +42,7 @@ function addProduct() {
                         <option
                             hidden=""
                             disabled="disabled"
-                            selected="selected"
+                            defaultValue="selected"
                             value=""
                         >
                             컬러
@@ -77,7 +77,7 @@ function addProduct() {
                         <option
                             hidden=""
                             disabled="disabled"
-                            selected="selected"
+                            defaultValue="selected"
                             value=""
                         >
                             무게
@@ -91,7 +91,7 @@ function addProduct() {
                 <div className="main-category w-full  bg-[#ffffff] rounded-3xl flex p-10 ">
                     <div className="input-container flex-[0.3]">
                         <p>
-                            <label for="nameid">
+                            <label htmlFor="nameid">
                                 제품명
                             </label>
                         </p>
@@ -109,7 +109,9 @@ function addProduct() {
                     </div>
                     <div className="input-container  flex-[0.3]">
                         <p>
-                            <label for="nameid">가격</label>
+                            <label htmlFor="nameid">
+                                가격
+                            </label>
                         </p>
                         <input
                             id="nameid"
@@ -125,7 +127,7 @@ function addProduct() {
                     </div>
                     <div className="input-container  flex-[0.3]">
                         <p>
-                            <label for="nameid">
+                            <label htmlFor="nameid">
                                 제품설명
                             </label>
                         </p>
