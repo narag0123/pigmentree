@@ -6,6 +6,9 @@ import UseProvider, { UseContext } from "./store/store";
 import Head from "next/head";
 
 export const metadata = {
+    title: "Welcome to Pigmentree",
+    description: "온라인 염료 판매 피그먼트리 입니다",
+
     openGraph: {
         title: "Welcome to Pigmentree",
         description: "온라인 염료 판매 피그먼트리 입니다",
