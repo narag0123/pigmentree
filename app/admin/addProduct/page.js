@@ -3,7 +3,7 @@ import React from "react";
 // import { connectDB } from "../../util/database.js";
 
 export default async function addProduct() {
-    const db = (await connectDB).db("Pigmentree");
+    // const db = (await connectDB).db("Pigmentree");
     // const result = await db
     //     .collection("main_category")
     //     .find()
