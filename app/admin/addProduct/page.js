@@ -1,21 +1,12 @@
 import fontStyleUtil from "@/app/util/fontStyle";
 import React from "react";
-// import { connectDB } from "../../util/database.js";
 
 export default async function addProduct() {
-    // const db = (await connectDB).db("Pigmentree");
-    // const result = await db
-    //     .collection("main_category")
-    //     .find()
-    //     .toArray();
-
-    // console.log(result);
-
     return (
         <div className="wrapper w-[128rem] min-h-[calc(100vh-24.2rem)]">
             <form
                 className="flex flex-col gap-[3rem] items-center"
-                action="/api/post/post_main"
+                action="/api/post/post_product"
                 method="POST"
             >
                 <div className="main-category w-full bg-[#ffffff] rounded-3xl flex justify-between items-center p-10">
@@ -27,6 +18,7 @@ export default async function addProduct() {
                             400,
                             2
                         )}
+                        name="mainID"
                     >
                         <option value={"single"}>
                             단품
@@ -46,6 +38,7 @@ export default async function addProduct() {
                             400,
                             2
                         )}
+                        name="midID"
                     >
                         <option
                             hidden=""
@@ -55,22 +48,35 @@ export default async function addProduct() {
                         >
                             컬러
                         </option>
-                        <option value={"red"}>레드</option>
-                        <option value={"yellow"}>
-                            옐로우
+                        <option value={"Sparkle Pearl"}>
+                            Sparkle Pearl
                         </option>
-                        <option value={"orange"}>
-                            오렌지
+                        <option value={"Gold Pearl"}>
+                            Gold Pearl
                         </option>
-                        <option value={"green"}>
-                            그린
+                        <option value={"Red Brown"}>
+                            Red Brown
                         </option>
-                        <option value={"blue"}>블루</option>
-                        <option value={"skyblue"}>
-                            스카이블루
+                        <option value={"Wine Red"}>
+                            Wine Red
                         </option>
-                        <option value={"purple"}>
-                            퍼플
+                        <option value={"Red Pearl"}>
+                            Red Pearl
+                        </option>
+                        <option value={"Lemon Yellow"}>
+                            Lemon Yellow
+                        </option>
+                        <option value={"Glossy Blue"}>
+                            Glossy Blue
+                        </option>
+                        <option value={"Shine Blue"}>
+                            Shine Blue
+                        </option>
+                        <option value={"Bright Blue"}>
+                            Bright Blue
+                        </option>
+                        <option value={"Luster Purple"}>
+                            Luster Purple
                         </option>
                     </select>
                     <select
@@ -81,6 +87,7 @@ export default async function addProduct() {
                             400,
                             2
                         )}
+                        name="subID"
                     >
                         <option
                             hidden=""
@@ -113,6 +120,7 @@ export default async function addProduct() {
                                 400,
                                 2
                             )}
+                            name="name"
                         />
                     </div>
                     <div className="input-container  flex-[0.3]">
@@ -131,6 +139,7 @@ export default async function addProduct() {
                                 400,
                                 2
                             )}
+                            name="price"
                         />
                     </div>
                     <div className="input-container  flex-[0.3]">
@@ -149,6 +158,7 @@ export default async function addProduct() {
                                 400,
                                 2
                             )}
+                            name="detail"
                         />
                     </div>
                 </div>
@@ -160,14 +170,6 @@ export default async function addProduct() {
                     전송
                 </button>
             </form>
-            <div>
-                {/* {result.map((e, i) => (
-                    <div>
-                        <div>{e._id}</div>
-                        <div>{e.name}</div>
-                    </div>
-                ))} */}
-            </div>
         </div>
     );
 }

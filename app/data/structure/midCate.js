@@ -3,30 +3,42 @@ const { ObjectId } = require("mongodb");
 const midCate = [
     {
         mainId: ObjectId("대분류 ID"),
-        name: "빨강",
+        name: "Sparkle Pearl",
     },
     {
         mainId: ObjectId("대분류 ID"),
-        name: "노랑",
+        name: "Gold Pearl",
     },
     {
         mainId: ObjectId("대분류 ID"),
-        name: "오렌지",
+        name: "Red Brown",
     },
     {
         mainId: ObjectId("대분류 ID"),
-        name: "초록",
+        name: "Wine Red",
     },
     {
         mainId: ObjectId("대분류 ID"),
-        name: "파랑",
+        name: "Red Pearl",
     },
     {
         mainId: ObjectId("대분류 ID"),
-        name: "하늘",
+        name: "Lemon Yellow",
     },
     {
         mainId: ObjectId("대분류 ID"),
-        name: "보라",
+        name: "Glossy Blue",
+    },
+    {
+        mainId: ObjectId("대분류 ID"),
+        name: "Shine Blue",
+    },
+    {
+        mainId: ObjectId("대분류 ID"),
+        name: "Bright Blue",
+    },
+    {
+        mainId: ObjectId("대분류 ID"),
+        name: "Luster Purple",
     },
 ];

@@ -1,7 +1,24 @@
-export default function hander(req, res) {
-    console.log("product");
+import { connectDB } from "@/app/util/database";
+
+export default async function hander(req, res) {
+    const db = (await connectDB).db("Pigmentree");
+    const single = await db
+        .collection("single")
+        .find()
+        .toArray();
 
     if (req.method === "POST") {
-        res.status(200).json("product mid 처리완료");
+        // await db.collection("single").updateMany(
+        //     {
+        //         color: "Luster Purple",
+        //     },
+        //     {
+        //         $set: {
+        //             detail: "Misteria Purple",
+        //         },
+        //     }
+        // );
+
+        return res.status(200);
     }
 }
