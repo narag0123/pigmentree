@@ -10,8 +10,8 @@ export const UseContext = createContext({});
 const UseProvider = ({ children }) => {
     const [isPage, setIsPage] = useState(usePathname());
     const [showItems, setShowItems] = useState([
-        { name: "sample", toggle: true },
-        { name: "single", toggle: false },
+        { name: "single", toggle: true },
+        { name: "sample", toggle: false },
         { name: "package", toggle: false },
     ]);
     const [isProduct, setIsProduct] = useState("single");

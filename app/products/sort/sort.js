@@ -2,7 +2,9 @@
 import { product } from "@/app/data/product";
 import { UseContext } from "@/app/store/store";
 import fontStyleUtil from "@/app/util/fontStyle";
+import translate from "@/app/util/translate";
 import React, {
+    Fragment,
     useContext,
     useEffect,
     useState,
@@ -12,6 +14,7 @@ import {
     AnimatePresence,
     motion,
     spring,
+    stagger,
 } from "framer-motion";
 import icon_filter from "public/asset/img/product/icons/icon_filter.png";
 import icon_chevron from "public/asset/img/product/icons/icon_chevron.png";
@@ -61,9 +64,9 @@ export default function Sort({ single, packages, sample }) {
     const [data, setData] = useState([]);
     const product_array = data.filter(
         (e) =>
-            (e.weight === 10 && e.type === "단품") ||
-            e.type === "샘플" ||
-            e.type === "패키지"
+            (e.weight === 10 && e.type === "single") ||
+            e.type === "sample" ||
+            e.type === "package"
     );
     const product_type = [
         ...new Set(product_array.map((name) => name.type)),
@@ -73,7 +76,7 @@ export default function Sort({ single, packages, sample }) {
         setData([...single, ...sample, ...packages]);
     }, []);
 
-    const returnByType = (param, index) => {
+    const returnByTypeNav = (param, index) => {
         return (
             <motion.div
                 key={index}
@@ -106,7 +109,7 @@ export default function Sort({ single, packages, sample }) {
                     .map((event, i) => (
                         <motion.div
                             key={event._id}
-                            className="m-0"
+                            className="m-0 flex gap-[0.75rem]"
                             style={fontStyleUtil(
                                 "kr",
                                 1.4,
@@ -127,10 +130,66 @@ export default function Sort({ single, packages, sample }) {
                                 },
                             }}
                         >
-                            {event.color}
+                            <span className="m-0">
+                                {event.color.toUpperCase()}
+                            </span>
+                            <span className="m-0">|</span>
+                            <span className="m-0 font-bold">
+                                {translate(event.color)}
+                            </span>
                         </motion.div>
                     ))}
             </motion.div>
+        );
+    };
+
+    const returnByTypeItems = (param, index) => {
+        return (
+            <>
+                {product_array
+                    .filter((e) => e.type === param)
+                    .map((event, i) => (
+                        <div
+                            className="border-black100 border-[1px] w-[32rem] h-[43rem] flex flex-col items-center"
+                            key={i}
+                        >
+                            <div className="w-[calc(100%-2rem)] border-black100 border-[1px] m-[1rem] flex-[0.83]">
+                                이미지 자리임
+                            </div>
+                            <div className="w-full border-black100 border-t-[1px] flex flex-col justify-center items-center flex-[0.17] p-[1rem] gap-[.2rem]">
+                                <div
+                                    className="m-0 w-full"
+                                    style={fontStyleUtil(
+                                        "en",
+                                        1.8,
+                                        900,
+                                        2.4
+                                    )}
+                                >
+                                    MICA{" "}
+                                    {" " +
+                                        event?.color?.toUpperCase()}
+                                </div>
+                                <div
+                                    className="flex justify-between m-0 w-full"
+                                    style={fontStyleUtil(
+                                        "en",
+                                        1.8,
+                                        400,
+                                        2
+                                    )}
+                                >
+                                    <div className="m-0">
+                                        {event.detail}
+                                    </div>
+                                    <div className="m-0">
+                                        ￦ {event.price}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+            </>
         );
     };
 
@@ -208,7 +267,7 @@ export default function Sort({ single, packages, sample }) {
                                     2
                                 )}
                             >
-                                {e}
+                                {translate(e)}
                                 <div className="chevron w-[1rem] h-[.5rem] rotate-[180deg] m-0 ">
                                     <Image
                                         src={icon_chevron}
@@ -217,103 +276,20 @@ export default function Sort({ single, packages, sample }) {
                                 </div>
                             </div>
                             <AnimatePresence>
-                                {showItems[i].toggle &&
-                                    returnByType(e, i)}
+                                {showItems[i]?.toggle &&
+                                    returnByTypeNav(e, i)}
                             </AnimatePresence>
                         </div>
                     ))}
-
-                    {/* <div className="h-full bg-black60 spacer">
-                        123
-                    </div> */}
                 </div>
                 <div className="content-right m-0 flex-[0.8] p-[2rem] grid grid-cols-3 gap-[2rem] border-black100 ">
-                    {/* {product.map(
-                        (e, i) =>
-                            isProduct ===
-                                product[i].state &&
-                            product[i].list.map((e, i) => (
-                                <div
-                                    className="border-black100 border-[1px] w-[32rem] h-[43rem] flex flex-col items-center"
-                                    key={i}
-                                >
-                                    <div className="w-[calc(100%-2rem)] border-black100 border-[1px] m-[1rem] flex-[0.83]">
-                                        이미지 자리임
-                                    </div>
-                                    <div className="w-full border-black100 border-t-[1px] flex flex-col justify-center items-center flex-[0.17] p-[1rem] gap-[.2rem]">
-                                        <div
-                                            className="m-0 w-full"
-                                            style={fontStyleUtil(
-                                                "en",
-                                                1.8,
-                                                900,
-                                                2.4
-                                            )}
-                                        >
-                                            MICA{" "}
-                                            {" " + e.eName}
-                                        </div>
-                                        <div
-                                            className="flex justify-between m-0 w-full"
-                                            style={fontStyleUtil(
-                                                "en",
-                                                1.8,
-                                                400,
-                                                2
-                                            )}
-                                        >
-                                            <div className="m-0">
-                                                {e.tags}
-                                            </div>
-                                            <div className="m-0">
-                                                ￦{" "}
-                                                {e.price10.toLocaleString()}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))
-                    )} */}
-                    {product_array.map((e, i) => (
-                        <div
-                            className="border-black100 border-[1px] w-[32rem] h-[43rem] flex flex-col items-center"
-                            key={i}
-                        >
-                            <div className="w-[calc(100%-2rem)] border-black100 border-[1px] m-[1rem] flex-[0.83]">
-                                이미지 자리임
-                            </div>
-                            <div className="w-full border-black100 border-t-[1px] flex flex-col justify-center items-center flex-[0.17] p-[1rem] gap-[.2rem]">
-                                <div
-                                    className="m-0 w-full"
-                                    style={fontStyleUtil(
-                                        "en",
-                                        1.8,
-                                        900,
-                                        2.4
-                                    )}
-                                >
-                                    MICA{" "}
-                                    {" " +
-                                        e?.color?.toUpperCase()}
-                                </div>
-                                <div
-                                    className="flex justify-between m-0 w-full"
-                                    style={fontStyleUtil(
-                                        "en",
-                                        1.8,
-                                        400,
-                                        2
-                                    )}
-                                >
-                                    <div className="m-0">
-                                        {e.detail}
-                                    </div>
-                                    <div className="m-0">
-                                        ￦ {e.price}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    {product_type.map((e, i) => (
+                        <Fragment key={i}>
+                            <AnimatePresence>
+                                {showItems[i].toggle &&
+                                    returnByTypeItems(e, i)}
+                            </AnimatePresence>
+                        </Fragment>
                     ))}
                 </div>
             </div>

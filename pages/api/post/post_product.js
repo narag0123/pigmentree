@@ -8,17 +8,8 @@ export default async function hander(req, res) {
         .toArray();
 
     if (req.method === "POST") {
-        // await db.collection("single").updateMany(
-        //     {
-        //         color: "Luster Purple",
-        //     },
-        //     {
-        //         $set: {
-        //             detail: "Misteria Purple",
-        //         },
-        //     }
-        // );
-
-        return res.status(200);
+        return res
+            .status(200)
+            .redirect("/admin/addProduct");
     }
 }
