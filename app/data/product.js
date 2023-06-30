@@ -57,19 +57,6 @@ export const product = [
     },
     {
         id: 1,
-        name: "샘플",
-        state: "sample",
-        list: [
-            {
-                id: 0,
-                item: "샘플 10종",
-                eName: "sample",
-                price10: 89000,
-            },
-        ],
-    },
-    {
-        id: 2,
         name: "패키지",
         state: "package",
         list: [
@@ -78,6 +65,19 @@ export const product = [
                 item: "패키지 구매",
                 eName: "package",
                 price10: 99000,
+            },
+        ],
+    },
+    {
+        id: 2,
+        name: "벌크",
+        state: "sample",
+        list: [
+            {
+                id: 0,
+                item: "샘플 10종",
+                eName: "sample",
+                price10: 89000,
             },
         ],
     },

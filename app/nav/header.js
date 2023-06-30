@@ -22,8 +22,8 @@ function Header() {
         },
         {
             id: 2,
-            name: "Promotions",
-            value: "promotions",
+            name: "Request",
+            value: "request",
         },
         {
             id: 3,

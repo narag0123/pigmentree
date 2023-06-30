@@ -8,6 +8,7 @@ import fontStyleUtil from "@/app/util/fontStyle";
 import Image from "next/image";
 
 import icon_arrowGrey from "public/asset/img/icons/arrow_grey.png";
+import { useRouter } from "next/navigation";
 
 export default function PurchaseLink({
     styles,
@@ -17,12 +18,12 @@ export default function PurchaseLink({
     const productType = [
         {
             id: 0,
-            name: "샘플 10종",
+            name: "단품 10종",
             stateName: "sample10",
         },
         {
             id: 1,
-            name: "단품 구매",
+            name: "패키지 구매",
             stateName: "single",
         },
         {
@@ -31,6 +32,8 @@ export default function PurchaseLink({
             stateName: "bulk",
         },
     ];
+
+    const router = useRouter();
 
     return (
         <div className="purchaseLink w-full py-[10rem]">
@@ -66,6 +69,9 @@ export default function PurchaseLink({
                                 duration: 0.2,
                             },
                         },
+                    }}
+                    onClick={() => {
+                        router.push("/products");
                     }}
                 >
                     <motion.div className="m-0 text-black80 ml-[4rem] flex items-center gap-[2rem] z-0">

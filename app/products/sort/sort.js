@@ -10,17 +10,11 @@ import React, {
     useState,
 } from "react";
 import Image from "next/image";
-import {
-    AnimatePresence,
-    motion,
-    spring,
-    stagger,
-} from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import icon_filter from "public/asset/img/product/icons/icon_filter.png";
 import icon_chevron from "public/asset/img/product/icons/icon_chevron.png";
-import { loadGetInitialProps } from "next/dist/shared/lib/utils";
 
-export default function Sort({ single, packages, sample }) {
+export default function Sort({ single, packages, bulk }) {
     const context = useContext(UseContext);
     const {
         showItems,
@@ -65,7 +59,7 @@ export default function Sort({ single, packages, sample }) {
     const product_array = data.filter(
         (e) =>
             (e.weight === 10 && e.type === "single") ||
-            e.type === "sample" ||
+            e.type === "bulk" ||
             e.type === "package"
     );
     const product_type = [
@@ -73,7 +67,7 @@ export default function Sort({ single, packages, sample }) {
     ];
 
     useEffect(() => {
-        setData([...single, ...sample, ...packages]);
+        setData([...single, ...packages, ...bulk]);
     }, []);
 
     const returnByTypeNav = (param, index) => {
@@ -153,8 +147,10 @@ export default function Sort({ single, packages, sample }) {
                             className="border-black100 border-[1px] w-[32rem] h-[43rem] flex flex-col items-center"
                             key={i}
                         >
-                            <div className="w-[calc(100%-2rem)] border-black100 border-[1px] m-[1rem] flex-[0.83]">
-                                이미지 자리임
+                            <div className="w-[calc(100%-2rem)] border-black100 border-[1px] m-[1rem] flex-[0.83] flex justify-center items-center">
+                                <span className="text-[15px]">
+                                    이미지 자리임
+                                </span>
                             </div>
                             <div className="w-full border-black100 border-t-[1px] flex flex-col justify-center items-center flex-[0.17] p-[1rem] gap-[.2rem]">
                                 <div

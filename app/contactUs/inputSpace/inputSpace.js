@@ -392,8 +392,9 @@ export default function InputSpace() {
 
                             {!isValidEmail && (
                                 <p className="mt-2 invisible peer-invalid:visible text-red text-sm absolute text-[red]">
-                                    Please provide a valid
-                                    email address.
+                                    이메일 양식에 맞게
+                                    작성해주세요.
+                                    example@email.com
                                 </p>
                             )}
                         </motion.label>

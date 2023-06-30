@@ -26,8 +26,8 @@ export default function OurProduct({
         },
         {
             id: 2,
-            name: "SGS",
-            subName: "Société Générale de Surveillance",
+            name: "COA",
+            subName: "Certificate Of Analysis",
             url: "",
         },
         {
@@ -114,7 +114,7 @@ export default function OurProduct({
                         훌륭한 작품은 훌륭한 재료로 부터
                         시작됩니다. 일류 쉐프의 요리는
                         신선한 재료로 부터 시작되듯이
-                        말이죠! MSDS, SGS, TDS 등과 같이
+                        말이죠! MSDS, COA, TDS 등과 같이
                         검증된 문서들로 더욱 안전하고 품질
                         또한 보장됩니다!
                     </motion.div>

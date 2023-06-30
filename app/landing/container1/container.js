@@ -7,8 +7,10 @@ import icon_star80 from "public/asset/img/icons/star80.png";
 import icon_globe80 from "public/asset/img/icons/globe80.png";
 import icon_arrow from "public/asset/img/icons/Arrow.png";
 import explosion from "public/asset/img/explosion.png";
+import { useRouter } from "next/navigation";
 
 export default function Container({}) {
+    const router = useRouter();
     return (
         <div
             className="wrapper w-[128rem] mx-auto"
@@ -139,6 +141,9 @@ export default function Container({}) {
                             // scale: 1.1,
                             rotateZ: -10,
                         }}
+                        onClick={() => {
+                            router.push("/products");
+                        }}
                     >
                         <Image
                             alt="icon_star"
@@ -170,6 +175,9 @@ export default function Container({}) {
                             stiffness: 1000,
                         }}
                         whileHover={{ rotateZ: -10 }}
+                        onClick={() => {
+                            router.push("/request");
+                        }}
                     >
                         <Image
                             alt="icon_globe"
@@ -252,6 +260,9 @@ export default function Container({}) {
                     },
                 }}
                 viewport={{ once: true }}
+                onClick={() => {
+                    router.push("/products");
+                }}
             >
                 <div className="rounded-full bg-black100 w-[20rem] h-[20rem] absolute top-0 -translate-y-[50%] right-[13rem] z-0 flex justify-center items-center">
                     <Image

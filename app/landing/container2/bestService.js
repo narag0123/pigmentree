@@ -5,8 +5,8 @@ import Image from "next/image";
 
 import red from "public/asset/img/Red.png";
 import red_grey from "public/asset/img/RedGrey.png";
-import orange from "public/asset/img/Orange.png";
-import orange_grey from "public/asset/img/OrangeGrey.png";
+import other from "public/asset/img/Orange.png";
+import other_grey from "public/asset/img/OrangeGrey.png";
 import green from "public/asset/img/Green.png";
 import green_grey from "public/asset/img/GreenGrey.png";
 import blue from "public/asset/img/Blue.png";
@@ -160,7 +160,7 @@ export default function BestService({
                             delay: 0.3,
                         }}
                         onMouseEnter={() => {
-                            setIsHover("orange");
+                            setIsHover("other");
                         }}
                         onMouseLeave={() => {
                             setIsHover("none");
@@ -188,7 +188,7 @@ export default function BestService({
                                 boxShadow: "10px 10px 0 ",
                             }}
                         >
-                            ORANGE
+                            OTHER
                         </motion.div>
                         <motion.div
                             variants={{
@@ -198,11 +198,11 @@ export default function BestService({
                             }}
                         >
                             <Image
-                                alt="orange_grey"
+                                alt="other_grey"
                                 src={
-                                    isHover === "orange"
-                                        ? orange
-                                        : orange_grey
+                                    isHover === "other"
+                                        ? other
+                                        : other_grey
                                 }
                                 height={340}
                                 className="flex-[1.0]"

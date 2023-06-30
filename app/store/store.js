@@ -11,8 +11,8 @@ const UseProvider = ({ children }) => {
     const [isPage, setIsPage] = useState(usePathname());
     const [showItems, setShowItems] = useState([
         { name: "single", toggle: true },
-        { name: "sample", toggle: false },
         { name: "package", toggle: false },
+        { name: "bulk", toggle: false },
     ]);
     const [isProduct, setIsProduct] = useState("single");
 

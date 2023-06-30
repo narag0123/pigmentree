@@ -1,10 +1,6 @@
 "use client";
 
-import React, {
-    useContext,
-    useEffect,
-    useState,
-} from "react";
+import React, { useContext, useState } from "react";
 
 import styles from "../color.module.scss";
 
@@ -16,11 +12,9 @@ import OurProduct from "./container2/ourProduct";
 import PurchaseLink from "./container2/purchaseLink";
 import BestService from "./container2/bestService";
 import BottomBanner from "./container2/bottomBanner";
-import { usePathname } from "next/navigation";
 
 function Landing() {
     const context = useContext(UseContext);
-    const { isPage, setIsPage } = context;
     const [isHover, setIsHover] = useState("none");
 
     return (

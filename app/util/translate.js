@@ -3,8 +3,8 @@ export default function translate(e) {
     if (e === "single") {
         return "단품";
     }
-    if (e === "sample") {
-        return "샘플";
+    if (e === "bulk") {
+        return "벌크";
     }
     if (e === "package") {
         return "패키지";

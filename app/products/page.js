@@ -8,8 +8,8 @@ export default async function Product() {
         .collection("single")
         .find()
         .toArray();
-    const sample = await db
-        .collection("sample")
+    const bulk = await db
+        .collection("bulk")
         .find()
         .toArray();
     const packages = await db
@@ -21,7 +21,7 @@ export default async function Product() {
         <div className="product min-h-[100vh]">
             <Sort
                 single={JSON.parse(JSON.stringify(single))}
-                sample={JSON.parse(JSON.stringify(sample))}
+                bulk={JSON.parse(JSON.stringify(bulk))}
                 packages={JSON.parse(
                     JSON.stringify(packages)
                 )}

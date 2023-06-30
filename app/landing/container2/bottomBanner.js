@@ -4,8 +4,9 @@ import Image from "next/image";
 
 import icon_star_black from "public/asset/img/icons/fillStar4Black.png";
 import fontStyleUtil from "@/app/util/fontStyle";
-
+import { useRouter } from "next/navigation";
 export default function BottomBanner() {
+    const router = useRouter();
     return (
         <div className="bottom-banner w-full bg-primary60 h-[56rem] rounded-b-[13rem] flex flex-col mt-[15rem] ">
             <div className="divider flex p-[8rem] items-center justify-between m-0">
@@ -220,6 +221,9 @@ export default function BottomBanner() {
                         ...spring,
                     }}
                     whileHover={{ y: -10 }}
+                    onClick={() => {
+                        router.push("/contactUs");
+                    }}
                 >
                     TALKS NOW
                 </motion.button>
