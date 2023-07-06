@@ -1,15 +1,14 @@
-import Link from "next/link";
-import React from "react";
+import LoginPage from "./loginPage/loginPage";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/pages/api/auth/[...nextauth]";
 
-export default function Admin() {
+export default async function Admin() {
+    let session = await getServerSession(authOptions);
+    console.log(session);
+
     return (
-        <div className="admin">
-            <div className="left">
-                <Link href={"/admin/addProduct"}>
-                    ADD PRODUCT
-                </Link>
-            </div>
-            <div className="right"></div>
+        <div className="admin min-h-[72vh]">
+            <LoginPage />
         </div>
     );
 }
