@@ -130,7 +130,11 @@ export default function InputSpace() {
                         협업하기를 항상 기다리고 있습니다.
                     </motion.p>
                 </div>
-                <form className="m-0 w-[50rem]">
+                <form
+                    className="m-0 w-[50rem]"
+                    action="/api/post/post_contactUs"
+                    method="POST"
+                >
                     <motion.div
                         initial={{
                             opacity: 0,
@@ -224,6 +228,7 @@ export default function InputSpace() {
                                             e.target.value
                                         );
                                     }}
+                                    name="name"
                                 />
                             </motion.label>
                             <motion.label
@@ -297,6 +302,7 @@ export default function InputSpace() {
                                             false
                                         );
                                     }}
+                                    name="phone"
                                 />
                                 {!isValid && (
                                     <p className="text-red-500 text-sm mt-1 text-[red]">
@@ -388,6 +394,7 @@ export default function InputSpace() {
                                     setIsFocusEmail(false);
                                 }}
                                 onChange={validateEmail}
+                                name="email"
                             />
 
                             {!isValidEmail && (
@@ -459,6 +466,7 @@ export default function InputSpace() {
                                         e.target.value
                                     );
                                 }}
+                                name="memo"
                             />
                         </motion.label>
                     </div>
@@ -487,6 +495,7 @@ export default function InputSpace() {
                                 ease: [0, 0.71, 0.2, 1.01],
                             },
                         }}
+                        type="submit"
                     >
                         전송하기
                     </motion.button>
