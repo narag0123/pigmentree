@@ -44,11 +44,14 @@ export default function LoginPage({ session }) {
     }, []);
 
     return (
-        <div className="not-login flex flex-col justify-center items-center w-[90%] h-[62vh]">
+        <div className="not-login flex flex-col justify-center items-center w-[90%]">
             {session !== null && (
                 <div>
                     {user?.admin === "admin" ? (
-                        <AdminUser />
+                        <AdminUser
+                            session={session}
+                            user={user}
+                        />
                     ) : (
                         <NotAdmin />
                     )}
@@ -61,9 +64,9 @@ export default function LoginPage({ session }) {
                         className="my-[3rem]"
                         style={fontStyleUtil(
                             "kr",
-                            2.0,
+                            1.8,
                             400,
-                            2.0
+                            1.8
                         )}
                     >
                         로그인 해 주세요

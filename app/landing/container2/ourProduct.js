@@ -5,6 +5,7 @@ import Image from "next/image";
 
 import icon_docs_active from "public/asset/img/icons/docs.png";
 import icon_docs from "public/asset/img/icons/docsGrey.png";
+import { useRouter } from "next/navigation";
 
 export default function OurProduct({
     styles,
@@ -37,6 +38,8 @@ export default function OurProduct({
             url: "",
         },
     ];
+
+    const router = useRouter();
 
     return (
         <>
@@ -145,6 +148,11 @@ export default function OurProduct({
                                 }}
                                 onMouseLeave={() => {
                                     setIsHover("none");
+                                }}
+                                onClick={() => {
+                                    router.push(
+                                        `/docs/${e.name}`
+                                    );
                                 }}
                                 variants={{
                                     hover: {

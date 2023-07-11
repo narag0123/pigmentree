@@ -1,0 +1,97 @@
+"use client";
+import Image from "next/image";
+import { motion } from "framer-motion";
+import React, { useEffect, useState } from "react";
+import download from "/public/asset/img/docs/arrow.down.png";
+import fontStyleUtil from "@/app/util/fontStyle";
+
+export default function page({ params }) {
+    const [products, setProducts] = useState();
+
+    useEffect(() => {
+        const get_products = () => {
+            fetch(`/api/get/get_products`, {
+                method: "GET",
+            })
+                .then((r) => r.json())
+                .then((result) => {
+                    setProducts(result);
+                });
+        };
+        get_products();
+    }, []);
+
+    const certi_docs = products?.map((e, i) => e.color);
+
+    return (
+        <div className="w-[128rem]  flex flex-col gap-[3rem]">
+            <div className="m-0">
+                <div
+                    style={fontStyleUtil("kr", 3, 900, 3)}
+                    className="flex flex-col gap-[0.5rem] items-start mb-[2rem]"
+                >
+                    <div
+                        className="m-0"
+                        style={fontStyleUtil(
+                            "en",
+                            6.8,
+                            900,
+                            6.8
+                        )}
+                    >
+                        DOWNLOAD {params.id}
+                    </div>
+                </div>
+                <div
+                    style={fontStyleUtil("kr", 1.5, 400, 3)}
+                >
+                    원하시는 컬러의 카드를 클릭하시면 저희
+                    제품의 {params.id} 공식문서를 다운
+                    받으실 수 있습니다. <br /> 검증된
+                    문서들로 믿고 안전하게 사용하실 수 있고
+                    품질 또한 보장됩니다!
+                </div>
+            </div>
+            <hr className="w-full " />
+            <grid className="w-full grid grid-cols-3 gap-[2rem] mb-[3rem]">
+                {certi_docs?.map((e, i) => (
+                    <motion.div
+                        className="cards w-full flex justify-between p-[3rem] border-[1px] border-black100 rounded-xl cursor-pointer"
+                        key={i}
+                        onClick={() => {}}
+                        whileHover={{
+                            y: -10,
+                            boxShadow:
+                                "4px 4px 10px rgba(0, 0, 0, 0.25)",
+                            // backgroundColor: "#ebebeb",
+                            transition: {
+                                ease: [0.25, 0.7, 0.25, 1],
+                            },
+                        }}
+                    >
+                        <div
+                            className="m-0"
+                            style={fontStyleUtil(
+                                "en",
+                                1.8,
+                                400,
+                                1.8
+                            )}
+                        >
+                            {e}
+                        </div>
+                        <div className="m-0">
+                            <Image
+                                className="m-0"
+                                src={download}
+                                alt="download"
+                                width={20}
+                                height={20}
+                            />
+                        </div>
+                    </motion.div>
+                ))}
+            </grid>
+        </div>
+    );
+}

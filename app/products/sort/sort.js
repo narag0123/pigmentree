@@ -62,6 +62,7 @@ export default function Sort({ single, packages, bulk }) {
             e.type === "bulk" ||
             e.type === "package"
     );
+
     const product_type = [
         ...new Set(product_array.map((name) => name.type)),
     ];
