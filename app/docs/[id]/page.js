@@ -5,8 +5,29 @@ import React, { useEffect, useState } from "react";
 import download from "/public/asset/img/docs/arrow.down.png";
 import fontStyleUtil from "@/app/util/fontStyle";
 
+// import MSDS_KT_100 from "/asset/certiDocs/MSDS/MSDS-KT-100.pdf";
+
 export default function page({ params }) {
     const [products, setProducts] = useState();
+
+    // Function will execute on click of button
+    const pdfDownloadHandler = (code, color) => {
+        // using Java Script method to get PDF file
+        fetch(
+            `/asset/certiDocs/${params.id}/${params.id}-${code}.pdf`
+        ).then((response) => {
+            response.blob().then((blob) => {
+                // Creating new object of PDF file
+                const fileURL =
+                    window.URL.createObjectURL(blob);
+                // Setting various property values
+                let alink = document.createElement("a");
+                alink.href = fileURL;
+                alink.download = `${params.id}_${code}_(${color}).pdf`;
+                alink.click();
+            });
+        });
+    };
 
     useEffect(() => {
         const get_products = () => {
@@ -21,7 +42,7 @@ export default function page({ params }) {
         get_products();
     }, []);
 
-    const certi_docs = products?.map((e, i) => e.color);
+    console.log(params.id);
 
     return (
         <div className="w-[128rem]  flex flex-col gap-[3rem]">
@@ -45,20 +66,25 @@ export default function page({ params }) {
                 <div
                     style={fontStyleUtil("kr", 1.5, 400, 3)}
                 >
-                    원하시는 컬러의 카드를 클릭하시면 저희
-                    제품의 {params.id} 공식문서를 다운
+                    하단의 원하시는 컬러의 카드를 클릭하시면
+                    저희 제품의 {params.id} 공식문서를 다운
                     받으실 수 있습니다. <br /> 검증된
                     문서들로 믿고 안전하게 사용하실 수 있고
                     품질 또한 보장됩니다!
                 </div>
             </div>
             <hr className="w-full " />
-            <grid className="w-full grid grid-cols-3 gap-[2rem] mb-[3rem]">
-                {certi_docs?.map((e, i) => (
-                    <motion.div
+            <div className="w-full grid grid-cols-3 gap-[2rem] mb-[3rem]">
+                {products?.map((e, i) => (
+                    <motion.button
                         className="cards w-full flex justify-between p-[3rem] border-[1px] border-black100 rounded-xl cursor-pointer"
                         key={i}
-                        onClick={() => {}}
+                        onClick={() => {
+                            pdfDownloadHandler(
+                                e.code,
+                                e.color
+                            );
+                        }}
                         whileHover={{
                             y: -10,
                             boxShadow:
@@ -78,7 +104,7 @@ export default function page({ params }) {
                                 1.8
                             )}
                         >
-                            {e}
+                            {e.color}
                         </div>
                         <div className="m-0">
                             <Image
@@ -89,9 +115,9 @@ export default function page({ params }) {
                                 height={20}
                             />
                         </div>
-                    </motion.div>
+                    </motion.button>
                 ))}
-            </grid>
+            </div>
         </div>
     );
 }

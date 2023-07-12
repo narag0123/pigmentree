@@ -55,7 +55,10 @@ export default function AdminUser({ session, user }) {
                     // const date2 = e._id.getTimestamp();
 
                     return (
-                        <div className="border-[1px] border-black100 w-full rounded-xl">
+                        <div
+                            className="border-[1px] border-black100 w-full rounded-xl"
+                            key={e._id}
+                        >
                             <div
                                 className="flex justify-between border-[1px] border-black100 m-[1rem] p-[1rem]"
                                 style={fontStyleUtil(
