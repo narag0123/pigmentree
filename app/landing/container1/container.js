@@ -16,13 +16,13 @@ export default function Container({}) {
             className="wrapper w-[128rem] mx-auto"
             id="cont1"
         >
-            <div className="flex justify-between">
+            <div className="widebox flex justify-between ">
                 <div
-                    className="textBox text-black100 m-0"
-                    style={fontStyleUtil("en", 13, 900, 13)}
+                    className="textBox text-black100 m-0 font-en font-black text-[13rem] leading-[13rem] flex-col"
+                    // style={fontStyleUtil("en", 13, 900, 13)}
                 >
                     <motion.div
-                        className="flex items-end"
+                        className="flex items-end m-0"
                         initial={{
                             x: -100,
                             opacity: 0,
@@ -33,17 +33,18 @@ export default function Container({}) {
                         }}
                         transition={spring}
                     >
-                        <div>C</div>
-                        <div className="flex flex-col">
+                        <div className="m-0">C</div>
+                        <div className="flex flex-col m-0">
                             <div className="flex gap-[10px] justify-center">
                                 <div className="circle w-[20px] h-[20px] bg-black100 rounded-full"></div>
                                 <div className="circle w-[20px] h-[20px] bg-black100 rounded-full"></div>
                             </div>
-                            <div>O</div>
+                            <div className="m-0">O</div>
                         </div>
-                        <div>LORIZE</div>
+                        <div className="m-0">LORIZE</div>
                     </motion.div>
                     <motion.div
+                        className="m-0"
                         initial={{
                             x: -100,
                             opacity: 0,
@@ -74,7 +75,7 @@ export default function Container({}) {
                             <div className="triangle"></div>
                         </div>
                     </motion.div>
-                    <div className="px-4 w-[47rem]">
+                    <div className="px-4 w-[47rem] w-full">
                         <motion.p
                             className="phrase"
                             style={fontStyleUtil(
@@ -123,7 +124,7 @@ export default function Container({}) {
                 </div>
             </div>
             <div className="divider-Btn py-[3rem] flex gap-[6rem] items-center">
-                <div className="Btn-recommend flex gap-[2rem]">
+                <div className="Btn-recommend flex gap-[2rem] m-0 ">
                     <motion.button
                         className="Btn-around bg-transparent rounded-full w-[23.1rem] h-[5rem] border-[1px] border-black80 m-0 px-[20px] flex items-center cursor-pointer"
                         initial={{

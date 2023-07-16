@@ -21,13 +21,13 @@ export default function AdminUser({ session, user }) {
     }, []);
 
     return (
-        <div className="flex flex-col items-end justify-start gap-[3rem] admin">
+        <div className="flex flex-col items-end justify-start gap-[3rem] admin min-h-[calc(100vh-24.2rem)]">
             <button
                 onClick={() => {
                     signOut({ callbackUrl: "/admin" });
                 }}
                 style={fontStyleUtil("kr", 1.5, 400, 1.5)}
-                className="px-[3rem] py-[1rem] font-semibold text-sm bg-black100 text-[white] rounded-full shadow-sm"
+                className="px-[3rem] py-[1rem] font-semibold text-sm bg-black100 text-[white] rounded-full "
             >
                 로그아웃
             </button>
@@ -60,7 +60,7 @@ export default function AdminUser({ session, user }) {
                             key={e._id}
                         >
                             <div
-                                className="flex justify-between border-[1px] border-black100 m-[1rem] p-[1rem]"
+                                className="flex justify-between border-[1px] border-black100 m-[1rem] p-[1rem] bg-primary20 rounded-xl"
                                 style={fontStyleUtil(
                                     "kr",
                                     1.5,
@@ -82,7 +82,7 @@ export default function AdminUser({ session, user }) {
                                 </div>
                             </div>
                             <div
-                                className="border-[1px] border-black100 m-[1rem] p-[1rem] min-h-[10rem]"
+                                className="border-[1px] border-black100 m-[1rem] p-[1rem] min-h-[10rem] bg-primary20 rounded-xl"
                                 style={fontStyleUtil(
                                     "kr",
                                     1.5,

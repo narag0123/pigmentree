@@ -23,6 +23,10 @@ module.exports = {
 
             point: "#ad00ff",
         },
+        fontFamily: {
+            kr: "Apple SD Gothic Neo",
+            en: "proxima-nova, sans-serif",
+        },
         extend: {
             backgroundImage: {
                 "gradient-radial":

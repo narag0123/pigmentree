@@ -42,10 +42,8 @@ export default function page({ params }) {
         get_products();
     }, []);
 
-    console.log(params.id);
-
     return (
-        <div className="w-[128rem]  flex flex-col gap-[3rem]">
+        <div className="w-[128rem] min-h-[calc(100vh-24.2rem)] flex flex-col gap-[3rem]">
             <div className="m-0">
                 <div
                     style={fontStyleUtil("kr", 3, 900, 3)}

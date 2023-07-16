@@ -59,7 +59,7 @@ export default function LoginPage({ session }) {
             )}
             {session === null && (
                 // login 안되었을떄
-                <>
+                <div>
                     <h1
                         className="my-[3rem]"
                         style={fontStyleUtil(
@@ -87,7 +87,7 @@ export default function LoginPage({ session }) {
                             구글 로그인
                         </button>
                     </div>
-                </>
+                </div>
             )}
         </div>
     );

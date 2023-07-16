@@ -18,7 +18,7 @@ function Landing() {
     const [isHover, setIsHover] = useState("none");
 
     return (
-        <div className="landing pt-[10rem]">
+        <div className="landing mt-[10rem]">
             <Container />
             <div
                 id="cont2"
