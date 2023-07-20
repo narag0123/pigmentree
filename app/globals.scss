@@ -119,23 +119,23 @@ li {
 }
 
 .header {
-    .logo {
-        font-family: proxima-nova, sans-serif;
-        font-weight: 800;
-        font-style: normal;
-        font-size: 30px;
-        line-height: 30px;
-    }
+    // .logo {
+    //     font-family: proxima-nova, sans-serif;
+    //     font-weight: 800;
+    //     font-style: normal;
+    //     font-size: 30px;
+    //     line-height: 30px;
+    // }
 
-    .nav {
-        span {
-            font-family: proxima-nova, sans-serif;
-            font-weight: 300;
-            font-style: normal;
-            font-size: 18px;
-            line-height: 24px;
-        }
-    }
+    // .nav {
+    //     span {
+    //         font-family: proxima-nova, sans-serif;
+    //         font-weight: 300;
+    //         font-style: normal;
+    //         font-size: 18px;
+    //         line-height: 24px;
+    //     }
+    // }
 }
 
 .vid {
@@ -160,3 +160,30 @@ li {
         border-right: 0px solid transparent;
     }
 }
+
+// // mobile
+// @media screen and (max-width: 450px) {
+//     .home {
+//         width: 100vw;
+//     }
+//     .wrapper {
+//         width: 340px !important;
+//     }
+
+//     .header {
+//         width: 340px;
+
+//         .logo {
+//             color: #171717;
+//             font-family: Proxima Nova;
+//             font-size: 13px;
+//             font-style: normal;
+//             font-weight: 800;
+//             line-height: normal;
+//         }
+
+//         .nav {
+//             display: none;
+//         }
+//     }
+// }

@@ -18,14 +18,14 @@ function Landing() {
     const [isHover, setIsHover] = useState("none");
 
     return (
-        <div className="landing mt-[10rem]">
+        <div className="landing mt-[10rem] sm:mt-[2rem]">
             <Container />
             <div
                 id="cont2"
                 className="bg-black100 h-fit pb-[18rem] overflow-x-hidden relative"
             >
                 <Band />
-                <div className="wrapper w-[128rem] mx-auto">
+                <div className="wrapper w-[128rem] mx-auto sm:w-[34rem]">
                     <OurProduct
                         sheet={sheet}
                         styles={styles}

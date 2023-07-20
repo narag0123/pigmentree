@@ -8,6 +8,22 @@ module.exports = {
         "./app/**/*.{js,ts,jsx,tsx,mdx}",
     ],
     theme: {
+        screens: {
+            "2xl": { max: "1535px" },
+            // => @media (max-width: 1535px) { ... }
+
+            xl: { max: "1279px" },
+            // => @media (max-width: 1279px) { ... }
+
+            lg: { max: "1023px" },
+            // => @media (max-width: 1023px) { ... }
+
+            md: { max: "767px" },
+            // => @media (max-width: 767px) { ... }
+
+            sm: { max: "639px" },
+            // => @media (max-width: 639px) { ... }
+        },
         colors: {
             black100: "#171717",
             black80: "#434343",
@@ -24,7 +40,7 @@ module.exports = {
             point: "#ad00ff",
         },
         fontFamily: {
-            kr: "Apple SD Gothic Neo",
+            kr: "'Apple SD Gothic Neo', sans-serif",
             en: "proxima-nova, sans-serif",
         },
         extend: {

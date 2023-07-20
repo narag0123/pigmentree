@@ -36,11 +36,11 @@ export default function PurchaseLink({
     const router = useRouter();
 
     return (
-        <div className="purchaseLink w-full py-[10rem]">
+        <div className="purchaseLink w-full py-[10rem] sm:py-[2.5rem]">
             {productType.map((e, i) => (
                 <motion.div
                     key={e.id}
-                    className={`w-full h-[15rem] bg-black100 border border-y-black80 border-x-0 flex justify-between items-center cursor-pointer relative overflow-hidden`}
+                    className={`w-full h-[15rem] bg-black100 border border-t-black80 last:border-b-black80 border-x-0 flex justify-between items-center cursor-pointer relative overflow-hidden sm:h-[9rem]`}
                     initial={{
                         opacity: 0,
                         x: -100,
@@ -76,11 +76,12 @@ export default function PurchaseLink({
                 >
                     <motion.div className="m-0 text-black80 ml-[4rem] flex items-center gap-[2rem] z-0">
                         <motion.p
-                            style={fontStyleUtil(
-                                "kr",
-                                4,
-                                700
-                            )}
+                            // style={fontStyleUtil(
+                            //     "kr",
+                            //     4,
+                            //     700
+                            // )}
+                            className="font-kr font-[700] text-[4rem] leading-[4rem] sm:text-[2.4rem] sm:leading-[2.4rem]"
                             variants={{
                                 hover: {
                                     color: styles.black20,

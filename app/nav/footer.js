@@ -3,8 +3,8 @@ import fontStyleUtil from "../util/fontStyle";
 
 function Footer() {
     return (
-        <div className="footer h-[12rem] bg-black100">
-            <div className="wrapper w-[128rem] flex flex-col gap-[2rem]">
+        <div className="footer h-[12rem] bg-black100 sm:w-[340px]">
+            <div className="wrapper w-[128rem] sm:w-[340px] flex flex-col gap-[2rem]">
                 <div
                     className="text-primary60 text-center"
                     style={{

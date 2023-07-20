@@ -44,8 +44,8 @@ export default function OurProduct({
     return (
         <>
             <motion.div
-                className="title text-black20 py-[3rem]"
-                style={fontStyleUtil("en", 7.2, 900, 8.8)}
+                className="title text-black20 py-[3rem] font-en font-[900] text-[7.2rem] leading-[8.8rem] sm:text-[4rem] sm:leading-[5rem]"
+                // style={fontStyleUtil("en", 7.2, 900, 8.8)}
                 initial={{
                     opacity: 0,
                     x: -100,
@@ -62,16 +62,16 @@ export default function OurProduct({
             >
                 OUR PRODUCT
             </motion.div>
-            <div className="flex justify-between items-end">
+            <div className="flex justify-between items-end sm:flex-col sm:gap-[3.5rem]">
                 <div className="flex-[0.85] m-0">
                     <motion.div
-                        className="text-black20"
-                        style={fontStyleUtil(
-                            "kr",
-                            2.4,
-                            700,
-                            4.8
-                        )}
+                        className="text-black20 font-kr font-[700] text-[2.4rem] leading-[4.8rem] sm:text-[1.8rem] sm:leading-[3.6rem]"
+                        // style={fontStyleUtil(
+                        //     "kr",
+                        //     2.4,
+                        //     700,
+                        //     4.8
+                        // )}
                         initial={{
                             opacity: 0,
                             x: -100,
@@ -91,13 +91,13 @@ export default function OurProduct({
                         훌륭한 작품은 훌륭한 재료로 부터
                     </motion.div>
                     <motion.div
-                        className="text-black20"
-                        style={fontStyleUtil(
-                            "kr",
-                            2,
-                            400,
-                            3
-                        )}
+                        className="text-black20 font-kr font-[400] text-[2rem] leading-[3rem] sm:text-[1.5rem] sm:leading-[2.4rem]"
+                        // style={fontStyleUtil(
+                        //     "kr",
+                        //     2,
+                        //     400,
+                        //     3
+                        // )}
                         initial={{
                             opacity: 0,
                             x: -100,
@@ -122,8 +122,8 @@ export default function OurProduct({
                         또한 보장됩니다!
                     </motion.div>
                 </div>
-                <div className="btns-sheet text-black20 flex flex-col m-0">
-                    <div className="grid grid-cols-2 gap-[1rem]">
+                <div className="btns-sheet text-black20 flex flex-col m-0 sm:w-full">
+                    <div className="grid grid-cols-2 gap-[1rem] sm:m-0">
                         {sheet.map((e, i) => (
                             <motion.div
                                 className="flex justify-start items-center btn-box border border-black60 rounded-full py-[1rem] px-[2rem] gap-[1rem] w-full cursor-pointer"
@@ -172,8 +172,8 @@ export default function OurProduct({
                                             : icon_docs
                                     }
                                     alt={e.name}
-                                    width={20}
-                                    className="m-0"
+                                    // width={20}
+                                    className="m-0 w-[2rem] sm:w-[1.5rem]"
                                 />
                                 <motion.div className="flex-col flex items-start m-0">
                                     <motion.p
@@ -186,18 +186,18 @@ export default function OurProduct({
                                                     },
                                             },
                                         }}
-                                        className="text-black60"
-                                        style={fontStyleUtil(
-                                            "en",
-                                            2,
-                                            700,
-                                            2
-                                        )}
+                                        className="text-black60 font-en text-[2rem] font-[700] leading-[2rem] sm:text-[1.5rem] sm:leading-[1.5rem]"
+                                        // style={fontStyleUtil(
+                                        //     "en",
+                                        //     2,
+                                        //     700,
+                                        //     2
+                                        // )}
                                     >
                                         {e.name}
                                     </motion.p>
                                     <motion.p
-                                        className="text-black60"
+                                        className="text-black60 sm:hidden"
                                         variants={{
                                             hover: {
                                                 color: styles.black20,

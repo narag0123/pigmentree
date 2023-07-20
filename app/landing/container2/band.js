@@ -80,39 +80,39 @@ export default function Band({}) {
     );
 
     return (
-        <div className="band bg-[#000000] w-fit h-[15rem]">
+        <div className="band bg-[#000000] w-fit h-[15rem] sm:h-[9rem]">
             <ParallaxText baseVelocity={3}>
                 <div
-                    className="text-primary60 flex items-center m-0"
-                    style={fontStyleUtil(
-                        "en",
-                        7.2,
-                        900,
-                        8.8
-                    )}
+                    className="text-primary60 flex items-center m-0 font-en font-[900] text-[7.2rem] leading-[8.8rem] sm:text-[4rem] sm:leading-[6rem]"
+                    // style={fontStyleUtil(
+                    //     "en",
+                    //     7.2,
+                    //     900,
+                    //     8.8
+                    // )}
                 >
                     PIGMENTREE
                 </div>
                 <Image
                     alt="icon_star4"
                     src={icon_star4}
-                    className="w-[5rem] h-[5rem] object-contain m-0"
+                    className="w-[5rem] h-[5rem] object-contain m-0 sm:w-[3rem] sm:h-[3rem]"
                 />
                 <div
-                    className="text-primary60 flex items-center m-0 w-fit"
-                    style={fontStyleUtil(
-                        "en",
-                        7.2,
-                        900,
-                        8.8
-                    )}
+                    className="text-primary60 flex items-center m-0 w-fit  font-en font-[900] text-[7.2rem] leading-[8.8rem] sm:text-[4rem] sm:leading-[6rem]"
+                    // style={fontStyleUtil(
+                    //     "en",
+                    //     7.2,
+                    //     900,
+                    //     8.8
+                    // )}
                 >
                     COLORIZE&nbsp;IDEAS
                 </div>
                 <Image
                     alt="icon_star4"
                     src={icon_star4}
-                    className="w-[5rem] h-[5rem] object-contain m-0"
+                    className="w-[5rem] h-[5rem] object-contain m-0 sm:w-[3rem] sm:h-[3rem]"
                 />
             </ParallaxText>
         </div>
