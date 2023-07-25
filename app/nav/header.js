@@ -8,33 +8,17 @@ import fontStyleUtil from "../util/fontStyle";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { UseContext } from "../store/store";
-import { usePathname } from "next/navigation";
 import { useMediaQuery } from "react-responsive";
-import MediaQuery from "react-responsive";
 
 function Header() {
     const context = useContext(UseContext);
-    const { isPage, setIsPage } = context;
-    const [mobile, setMobile] = useState(false);
-
-    const isMobileSize = useMediaQuery({
-        query: "(max-width: 639px)",
-    });
-
-    const checkResize = () => {
-        if (isMobileSize) {
-            setMobile(true);
-        } else {
-            setMobile(false);
-        }
-    };
-
-    useEffect(() => {
-        checkResize();
-    }, [isMobileSize]);
-    // const isDestopSize = useMediaQuery({
-    //     query: "(min-width: 640px)",
-    // });
+    const {
+        isPage,
+        setIsPage,
+        isMobile,
+        setIsMobile,
+        queryMobile,
+    } = context;
 
     const navMenu = [
         {
@@ -59,6 +43,10 @@ function Header() {
         },
     ];
 
+    // const queryMobile = useMediaQuery({
+    //     query: "(max-width: 649px)",
+    // });
+
     return (
         <div className="header wrapper w-[128rem] sm:w-[340px] mx-auto py-[4rem] flex justify-between">
             <Link
@@ -82,16 +70,11 @@ function Header() {
                 >
                     Pigmentree
                 </motion.p>
-                {/* {isMobileSize ? (
-                    <p>IT's MOBILE SIZE</p>
-                ) : (
-                    <p>IT's FOR DESKTOP</p>
-                )} */}
             </Link>
 
-            {!mobile ? (
+            {!queryMobile ? (
                 <div
-                    className="nav flex gap-[66px] m-0"
+                    className="nav flex gap-[66px] m-0 sm:hidden"
                     style={fontStyleUtil(
                         "en",
                         1.8,

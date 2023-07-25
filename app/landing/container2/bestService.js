@@ -1,6 +1,5 @@
 import React from "react";
 import { motion, spring } from "framer-motion";
-import fontStyleUtil from "@/app/util/fontStyle";
 import Image from "next/image";
 
 import red from "public/asset/img/Red.png";
@@ -13,22 +12,21 @@ import blue from "public/asset/img/Blue.png";
 import blue_grey from "public/asset/img/BlueGrey.png";
 import purple from "public/asset/img/Purple.png";
 import purple_grey from "public/asset/img/PurpleGrey.png";
+import { useMediaQuery } from "react-responsive";
 
 export default function BestService({
     isHover,
     setIsHover,
 }) {
+    const queryMobile = useMediaQuery({
+        query: "(max-width: 649px)",
+    });
+
     return (
         <div className="flex flex-col bestService">
-            <div className="title flex justify-between gap-[8rem] mb-[1rem]">
+            <div className="title flex justify-between gap-[8rem] mb-[1rem] sm:flex-col sm:gap-[2rem]">
                 <motion.p
-                    style={fontStyleUtil(
-                        "en",
-                        7.2,
-                        900,
-                        8.8
-                    )}
-                    className="text-black20"
+                    className="text-black20 font-en font-black text-[7.2rem] leading-[8.8rem] sm:text-[4rem] sm:leading-[4rem]"
                     initial={{
                         opacity: 0,
                         y: -50,
@@ -46,8 +44,7 @@ export default function BestService({
                     BEST SERVICE
                 </motion.p>
                 <motion.p
-                    style={fontStyleUtil("en", 2, 400, 3)}
-                    className="text-black20 flex-[1] flex items-center"
+                    className="text-black20 flex-[1] flex items-center font-en font-[400] text-[2rem] leading-[3rem] sm:text-[1.5rem] sm:leading-[2.4rem]"
                     initial={{
                         opacity: 0,
                         sclae: 0,
@@ -70,7 +67,7 @@ export default function BestService({
                 </motion.p>
             </div>
             <div className="image-cont flex flex-col gap-[3rem]">
-                <div className="flex gap-[3rem]">
+                <div className="flex gap-[3rem] sm:gap-0">
                     <motion.div
                         className="relative overflow-hidden cursor-pointer"
                         initial={{
@@ -99,7 +96,9 @@ export default function BestService({
                         whileHover={"hover"}
                     >
                         <motion.div
-                            className="absolute top-1/2 left-1/2 z-10 bg-black100 text-primary100 -translate-x-1/2 -translate-y-1/2 px-[5rem] py-[1rem]"
+                            className="absolute top-1/2 left-1/2 z-10 bg-black100 text-primary100 -translate-x-1/2 -translate-y-1/2 px-[5rem] py-[1rem]
+                            font-en font-black text-[4.4rem] leading-[5rem] shadow-[10px_10px_0]
+                            "
                             initial={{ opacity: 0 }}
                             variants={{
                                 hover: {
@@ -108,15 +107,6 @@ export default function BestService({
                                         delay: 0.1,
                                     },
                                 },
-                            }}
-                            style={{
-                                ...fontStyleUtil(
-                                    "en",
-                                    4.4,
-                                    900,
-                                    5
-                                ),
-                                boxShadow: "10px 10px 0 ",
                             }}
                         >
                             RED
@@ -129,6 +119,7 @@ export default function BestService({
                         >
                             <div className="absolute top-0 left-0 bg-[black] opacity-50 w-full h-full"></div>
                             <Image
+                                className="sm:hidden"
                                 alt="red_grey"
                                 src={
                                     isHover === "red"
@@ -141,7 +132,7 @@ export default function BestService({
                         </motion.div>
                     </motion.div>
                     <motion.div
-                        className="relative overflow-hidden cursor-pointer"
+                        className="relative overflow-hidden cursor-pointer h-[34rem]"
                         initial={{
                             opacity: 0,
                             scale: 0,
@@ -168,7 +159,9 @@ export default function BestService({
                         whileHover={"hover"}
                     >
                         <motion.div
-                            className="absolute top-1/2 left-1/2 z-10 bg-black100 text-primary100 -translate-x-1/2 -translate-y-1/2 px-[5rem] py-[1rem]"
+                            className="absolute top-1/2 left-1/2 z-10 bg-black100 text-primary100 -translate-x-1/2 -translate-y-1/2 px-[5rem] py-[1rem]
+                            font-en font-black text-[4.4rem] leading-[5rem] shadow-[10px_10px_0]
+                            sm:px-0 sm:py-0"
                             initial={{ opacity: 0 }}
                             variants={{
                                 hover: {
@@ -178,17 +171,8 @@ export default function BestService({
                                     },
                                 },
                             }}
-                            style={{
-                                ...fontStyleUtil(
-                                    "en",
-                                    4.4,
-                                    900,
-                                    5
-                                ),
-                                boxShadow: "10px 10px 0 ",
-                            }}
                         >
-                            OTHER
+                            {!queryMobile && "OTHER"}
                         </motion.div>
                         <motion.div
                             variants={{
@@ -200,17 +184,18 @@ export default function BestService({
                             <Image
                                 alt="other_grey"
                                 src={
-                                    isHover === "other"
-                                        ? other
-                                        : other_grey
+                                    !queryMobile &&
+                                    isHover !== "other"
+                                        ? other_grey
+                                        : other
                                 }
                                 height={340}
-                                className="flex-[1.0]"
+                                className="flex-[1.0] h-[34rem] object-cover"
                             />
                         </motion.div>
                     </motion.div>
                 </div>
-                <div className="flex gap-[3rem]">
+                <div className="flex gap-[3rem] sm:hidden">
                     <motion.div
                         className="relative overflow-hidden cursor-pointer"
                         initial={{
@@ -239,7 +224,9 @@ export default function BestService({
                         whileHover={"hover"}
                     >
                         <motion.div
-                            className="absolute top-1/2 left-1/2 z-10 bg-black100 text-primary100 -translate-x-1/2 -translate-y-1/2 px-[5rem] py-[1rem]"
+                            className="absolute top-1/2 left-1/2 z-10 bg-black100 text-primary100 -translate-x-1/2 -translate-y-1/2 px-[5rem] py-[1rem]
+                            font-en font-black text-[4.4rem] leading-[5rem] shadow-[10px_10px_0]                           
+                            "
                             initial={{ opacity: 0 }}
                             variants={{
                                 hover: {
@@ -248,15 +235,6 @@ export default function BestService({
                                         delay: 0.1,
                                     },
                                 },
-                            }}
-                            style={{
-                                ...fontStyleUtil(
-                                    "en",
-                                    4.4,
-                                    900,
-                                    5
-                                ),
-                                boxShadow: "10px 10px 0 ",
                             }}
                         >
                             GREEN
@@ -307,7 +285,9 @@ export default function BestService({
                         whileHover={"hover"}
                     >
                         <motion.div
-                            className="absolute top-1/2 left-1/2 z-10 bg-black100 text-primary100 -translate-x-1/2 -translate-y-1/2 px-[5rem] py-[1rem]"
+                            className="absolute top-1/2 left-1/2 z-10 bg-black100 text-primary100 -translate-x-1/2 -translate-y-1/2 px-[5rem] py-[1rem]
+                            font-en font-black text-[4.4rem] leading-[5rem] shadow-[10px_10px_0]
+                            "
                             initial={{ opacity: 0 }}
                             variants={{
                                 hover: {
@@ -316,15 +296,6 @@ export default function BestService({
                                         delay: 0.1,
                                     },
                                 },
-                            }}
-                            style={{
-                                ...fontStyleUtil(
-                                    "en",
-                                    4.4,
-                                    900,
-                                    5
-                                ),
-                                boxShadow: "10px 10px 0 ",
                             }}
                         >
                             BLUE
@@ -375,7 +346,9 @@ export default function BestService({
                         whileHover={"hover"}
                     >
                         <motion.div
-                            className="absolute top-1/2 left-1/2 z-10 bg-black100 text-primary100 -translate-x-1/2 -translate-y-1/2 px-[5rem] py-[1rem]"
+                            className="absolute top-1/2 left-1/2 z-10 bg-black100 text-primary100 -translate-x-1/2 -translate-y-1/2 px-[5rem] py-[1rem]
+                            font-en font-black text-[4.4rem] leading-[5rem] shadow-[10px_10px_0]
+                            "
                             initial={{ opacity: 0 }}
                             variants={{
                                 hover: {
@@ -384,15 +357,6 @@ export default function BestService({
                                         delay: 0.1,
                                     },
                                 },
-                            }}
-                            style={{
-                                ...fontStyleUtil(
-                                    "en",
-                                    4.4,
-                                    900,
-                                    5
-                                ),
-                                boxShadow: "10px 10px 0 ",
                             }}
                         >
                             PURPLE

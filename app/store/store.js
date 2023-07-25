@@ -1,7 +1,12 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import React, { useState, createContext } from "react";
+import React, {
+    useState,
+    createContext,
+    useEffect,
+} from "react";
+import { useMediaQuery } from "react-responsive";
 
 //store 만든거
 export const UseContext = createContext({});
@@ -16,6 +21,18 @@ const UseProvider = ({ children }) => {
     ]);
     const [isProduct, setIsProduct] = useState("single");
 
+    const [isMobile, setIsMobile] = useState(
+        window.innerWidth
+    );
+
+    const queryMobile = useMediaQuery({
+        query: "(max-width: 649px)",
+    });
+
+    useEffect(() => {
+        setIsMobile(window.innerWidth);
+    }, [isMobile]);
+
     return (
         <UseContext.Provider
             value={{
@@ -25,6 +42,9 @@ const UseProvider = ({ children }) => {
                 setShowItems,
                 isProduct,
                 setIsProduct,
+                isMobile,
+                setIsMobile,
+                queryMobile,
             }}
         >
             {children}

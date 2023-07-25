@@ -74,7 +74,7 @@ export default function PurchaseLink({
                         router.push("/products");
                     }}
                 >
-                    <motion.div className="m-0 text-black80 ml-[4rem] flex items-center gap-[2rem] z-0">
+                    <motion.div className="m-0 text-black80 ml-[4rem] flex items-center gap-[2rem] z-0 sm:ml-[2rem]">
                         <motion.p
                             // style={fontStyleUtil(
                             //     "kr",
@@ -115,15 +115,16 @@ export default function PurchaseLink({
                         </AnimatePresence>
                     </motion.div>
                     <div
-                        className={`z-0 m-0 w-[12rem] h-[12rem] flex items-center transition-all duration-300 rounded-lg ${
+                        className={`z-0 m-0 w-[12rem] h-[12rem] sm:w-[6rem] sm:h-[6rem] flex items-center transition-all duration-300 rounded-lg ${
                             isHover === e.stateName
                                 ? "bg-primary100"
                                 : "none"
                         }`}
                     >
                         <Image
+                            className="w-[4rem] sm:w-[2rem]"
                             alt={"icon_arrowGrey"}
-                            height={"40"}
+                            // height={"40"}
                             src={icon_arrowGrey}
                         />
                     </div>

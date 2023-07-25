@@ -1,6 +1,10 @@
 "use client";
 
-import React, { useContext, useState } from "react";
+import React, {
+    useContext,
+    useEffect,
+    useState,
+} from "react";
 
 import styles from "../color.module.scss";
 
@@ -14,7 +18,6 @@ import BestService from "./container2/bestService";
 import BottomBanner from "./container2/bottomBanner";
 
 function Landing() {
-    const context = useContext(UseContext);
     const [isHover, setIsHover] = useState("none");
 
     return (
@@ -22,7 +25,7 @@ function Landing() {
             <Container />
             <div
                 id="cont2"
-                className="bg-black100 h-fit pb-[18rem] overflow-x-hidden relative"
+                className="bg-black100 h-fit pb-[18rem] overflow-x-hidden relative overflow-y-hidden sm:pb-[5rem]"
             >
                 <Band />
                 <div className="wrapper w-[128rem] mx-auto sm:w-[34rem]">

@@ -35,7 +35,7 @@ export default function RootLayout({ children }) {
     return (
         <html lang="en">
             <UseProvider>
-                <body className="bg-primary60 ">
+                <body className="bg-primary60 overflow-scroll overflow-x-hidden">
                     <Header />
                     {children}
                     <Footer />
