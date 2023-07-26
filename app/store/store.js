@@ -29,10 +29,6 @@ const UseProvider = ({ children }) => {
         query: "(max-width: 649px)",
     });
 
-    useEffect(() => {
-        setIsMobile(window.innerWidth);
-    }, [isMobile]);
-
     return (
         <UseContext.Provider
             value={{
