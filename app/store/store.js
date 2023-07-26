@@ -21,10 +21,6 @@ const UseProvider = ({ children }) => {
     ]);
     const [isProduct, setIsProduct] = useState("single");
 
-    const [isMobile, setIsMobile] = useState(
-        window.innerWidth
-    );
-
     const queryMobile = useMediaQuery({
         query: "(max-width: 649px)",
     });
@@ -38,8 +34,6 @@ const UseProvider = ({ children }) => {
                 setShowItems,
                 isProduct,
                 setIsProduct,
-                isMobile,
-                setIsMobile,
                 queryMobile,
             }}
         >
