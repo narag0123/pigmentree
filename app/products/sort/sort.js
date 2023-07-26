@@ -13,6 +13,7 @@ import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import icon_filter from "public/asset/img/product/icons/icon_filter.png";
 import icon_chevron from "public/asset/img/product/icons/icon_chevron.png";
+import { useRouter } from "next/navigation";
 
 export default function Sort({ single, packages, bulk }) {
     const context = useContext(UseContext);
@@ -22,6 +23,8 @@ export default function Sort({ single, packages, bulk }) {
         isProduct,
         setIsProduct,
     } = context;
+
+    const router = useRouter();
 
     const toggleHandler = (state) => {
         const index = product.findIndex(
@@ -124,6 +127,11 @@ export default function Sort({ single, packages, bulk }) {
                                     // delay: 0.05 * n,
                                 },
                             }}
+                            onClick={() => {
+                                router.push(
+                                    `products/${event?.color}`
+                                );
+                            }}
                         >
                             <span className="m-0">
                                 {event.color.toUpperCase()}
@@ -138,6 +146,7 @@ export default function Sort({ single, packages, bulk }) {
         );
     };
 
+    // 상품 네모 칸임
     const returnByTypeItems = (param, index) => {
         return (
             <>
@@ -145,8 +154,13 @@ export default function Sort({ single, packages, bulk }) {
                     .filter((e) => e.type === param)
                     .map((event, i) => (
                         <div
-                            className="border-black100 border-[1px] w-[32rem] h-[43rem] flex flex-col items-center"
+                            className="border-black100 border-[1px] w-[32rem] h-[43rem] flex flex-col items-center cursor-pointer"
                             key={i}
+                            onClick={() => {
+                                router.push(
+                                    `products/${event?.color}`
+                                );
+                            }}
                         >
                             <div className="w-[calc(100%-2rem)] border-black100 border-[1px] m-[1rem] flex-[0.83] flex justify-center items-center">
                                 <span className="text-[15px]">
