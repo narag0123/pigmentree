@@ -2,15 +2,13 @@
 import Image from "next/image";
 import React from "react";
 import fontStyleUtil from "@/app/util/fontStyle";
-
 import { motion, easeInOut } from "framer-motion";
-
 import aboutUsMain from "public/asset/img/aboutUs/aboutUsMain.png";
 
 export default function Container1() {
     return (
-        <div className="wrapper w-[128rem] flex justify-between items-end">
-            <div className="w-[65rem] m-0 flex flex-col gap-[10rem]">
+        <div className="wrapper w-[128rem] flex justify-between items-end sm:w-full sm:px-[2.5rem] sm:flex-col">
+            <div className="w-[65rem] m-0 flex flex-col gap-[10rem] sm:w-full sm:gap-[4rem]">
                 <div className="title flex flex-col gap-[2rem]">
                     <motion.div
                         className="flex items-center gap-[2rem] title m-0"
@@ -26,22 +24,15 @@ export default function Container1() {
                             },
                         }}
                     >
-                        <div className="hr w-[18rem] border-[0.5px] border-black80 relative m-0">
+                        <div className="hr w-[18rem] border-[0.5px] border-black80 relative m-0 sm:w-[16rem]">
                             <div className="circle w-[.5rem] h-[.5rem] rounded-full bg-black100 absolute top-[50%] left-[100%] -translate-y-[50%]"></div>
                         </div>
-                        <div
-                            className="m-0"
-                            style={fontStyleUtil(
-                                "en",
-                                1.5,
-                                700,
-                                1.5
-                            )}
-                        >
+                        <div className="m-0 font-en font-[700] text-[1.5rem] leading-[1.5rem] sm:text-[1.2rem]">
                             BE CREATIVE
                         </div>
                     </motion.div>
                     <motion.div
+                        className="font-en font-[900] text-[8rem] leading-[8rem] sm:text-[4rem] sm:leading-[4rem]"
                         initial={{
                             x: -30,
                             opacity: 0,
@@ -54,17 +45,14 @@ export default function Container1() {
                                 easeInOut,
                             },
                         }}
-                        style={fontStyleUtil(
-                            "en",
-                            8,
-                            900,
-                            8
-                        )}
                     >
                         WE ARE PIGMENTREE !
                     </motion.div>
                 </div>
-                <div style={fontStyleUtil("kr", 2, 400, 3)}>
+                <div
+                    className="font-kr text-[2rem] leading-[3rem] sm:text-[1.8rem]"
+                    // style={fontStyleUtil("kr", 2, 400, 3)}
+                >
                     <motion.p
                         initial={{
                             x: -30,
@@ -113,7 +101,7 @@ export default function Container1() {
                 </div>
             </div>
             <motion.div
-                className="m-0 h-[55rem]"
+                className="m-0 h-[55rem] sm:hidden"
                 initial={{
                     opacity: 0,
                     rotateY: -180,

@@ -19,9 +19,11 @@ import BottomBanner from "./container2/bottomBanner";
 
 function Landing() {
     const [isHover, setIsHover] = useState("none");
+    const context = useContext(UseContext);
+    const { queryMobile } = context;
 
     return (
-        <div className="landing mt-[10rem] sm:mt-[2rem]">
+        <div className={`landing mt-[10rem] sm:mt-[2rem] `}>
             <Container />
             <div
                 id="cont2"
@@ -43,6 +45,7 @@ function Landing() {
                     <BestService
                         isHover={isHover}
                         setIsHover={setIsHover}
+                        queryMobile={queryMobile}
                     />
                     <BottomBanner />
                 </div>

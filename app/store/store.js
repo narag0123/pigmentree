@@ -20,10 +20,15 @@ const UseProvider = ({ children }) => {
         { name: "bulk", toggle: false },
     ]);
     const [isProduct, setIsProduct] = useState("single");
-
+    const [isNavOpen, setIsNavOpen] = useState(false);
     const queryMobile = useMediaQuery({
         query: "(max-width: 649px)",
     });
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        setIsMobile(queryMobile);
+    }, [queryMobile]);
 
     return (
         <UseContext.Provider
@@ -34,7 +39,10 @@ const UseProvider = ({ children }) => {
                 setShowItems,
                 isProduct,
                 setIsProduct,
-                queryMobile,
+                isNavOpen,
+                setIsNavOpen,
+                isMobile,
+                setIsMobile,
             }}
         >
             {children}

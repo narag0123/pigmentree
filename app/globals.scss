@@ -118,26 +118,6 @@ li {
     margin: 0;
 }
 
-.header {
-    // .logo {
-    //     font-family: proxima-nova, sans-serif;
-    //     font-weight: 800;
-    //     font-style: normal;
-    //     font-size: 30px;
-    //     line-height: 30px;
-    // }
-
-    // .nav {
-    //     span {
-    //         font-family: proxima-nova, sans-serif;
-    //         font-weight: 300;
-    //         font-style: normal;
-    //         font-size: 18px;
-    //         line-height: 24px;
-    //     }
-    // }
-}
-
 .vid {
     background-image: url("/asset/img/vid.png");
 }
@@ -161,29 +141,9 @@ li {
     }
 }
 
-// // mobile
-// @media screen and (max-width: 450px) {
-//     .home {
-//         width: 100vw;
-//     }
-//     .wrapper {
-//         width: 340px !important;
-//     }
+.text-stroke {
+    /* 텍스트 색상 지정 */
 
-//     .header {
-//         width: 340px;
-
-//         .logo {
-//             color: #171717;
-//             font-family: Proxima Nova;
-//             font-size: 13px;
-//             font-style: normal;
-//             font-weight: 800;
-//             line-height: normal;
-//         }
-
-//         .nav {
-//             display: none;
-//         }
-//     }
-// }
+    -webkit-text-stroke-width: 1px; /* 텍스트 테두리의 두께를 지정합니다. */
+    -webkit-text-stroke-color: black; /* 텍스트 테두리의 색상을 지정합니다. */
+}

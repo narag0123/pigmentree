@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import { UseContext } from "@/app/store/store";
 export default function BottomBanner() {
     const context = useContext(UseContext);
-    const { isMobile, queryMobile } = context;
+    const { isMobile, setIsMobile } = context;
 
     const router = useRouter();
     return (
@@ -21,7 +21,7 @@ export default function BottomBanner() {
                             width: 0,
                         }}
                         whileInView={
-                            !queryMobile
+                            !isMobile
                                 ? { width: "40rem" }
                                 : { width: "6rem" }
                         }
@@ -137,7 +137,7 @@ export default function BottomBanner() {
                             width: 0,
                         }}
                         whileInView={
-                            !queryMobile
+                            !isMobile
                                 ? { width: "40rem" }
                                 : { width: "6rem" }
                         }

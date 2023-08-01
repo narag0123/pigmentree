@@ -8,16 +8,19 @@ import fontStyleUtil from "../util/fontStyle";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { UseContext } from "../store/store";
-import { useMediaQuery } from "react-responsive";
+// import { useMediaQuery } from "react-responsive";
+import MobileNav from "./mobileNav";
 
 function Header() {
     const context = useContext(UseContext);
     const {
         isPage,
         setIsPage,
+        queryMobile,
+        isNavOpen,
+        setIsNavOpen,
         isMobile,
         setIsMobile,
-        queryMobile,
     } = context;
 
     const navMenu = [
@@ -42,10 +45,6 @@ function Header() {
             value: "contactUs",
         },
     ];
-
-    // const queryMobile = useMediaQuery({
-    //     query: "(max-width: 649px)",
-    // });
 
     return (
         <div className="header wrapper w-[128rem] sm:w-[340px] mx-auto py-[4rem] flex justify-between">
@@ -72,7 +71,7 @@ function Header() {
                 </motion.p>
             </Link>
 
-            {!queryMobile ? (
+            {!isMobile ? (
                 <div
                     className="nav flex gap-[66px] m-0 sm:hidden"
                     style={fontStyleUtil(
@@ -124,12 +123,22 @@ function Header() {
                     ))}
                 </div>
             ) : (
-                <div className="hamburger flex flex-col gap-[3px] m-0 justify-center items-center">
+                <div
+                    className="hamburger flex flex-col gap-[3px] m-0 justify-center items-center cursor-pointer z-[1000]"
+                    onClick={() => {
+                        setIsNavOpen(!isNavOpen);
+                    }}
+                >
                     <div className="w-[20px] h-[2px] bg-[#171717]"></div>
                     <div className="w-[20px] h-[2px] bg-[#171717]"></div>
                     <div className="w-[20px] h-[2px] bg-[#171717]"></div>
                 </div>
             )}
+            <AnimatePresence>
+                {isNavOpen && (
+                    <MobileNav navMenu={navMenu} />
+                )}
+            </AnimatePresence>
         </div>
     );
 }

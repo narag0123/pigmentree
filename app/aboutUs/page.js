@@ -5,7 +5,7 @@ import Container2 from "./container2/container2";
 
 function AboutUs() {
     return (
-        <div className="aboutUs pt-[5rem]">
+        <div className="aboutUs pt-[5rem] overflow-hidden">
             <Container1 />
             <Container2 />
         </div>

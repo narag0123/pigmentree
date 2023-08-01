@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useContext } from "react";
 import { motion, spring } from "framer-motion";
 import Image from "next/image";
 
@@ -12,15 +13,15 @@ import blue from "public/asset/img/Blue.png";
 import blue_grey from "public/asset/img/BlueGrey.png";
 import purple from "public/asset/img/Purple.png";
 import purple_grey from "public/asset/img/PurpleGrey.png";
-import { useMediaQuery } from "react-responsive";
+// import { useMediaQuery } from "react-responsive";
+import { UseContext } from "@/app/store/store";
 
 export default function BestService({
     isHover,
     setIsHover,
 }) {
-    const queryMobile = useMediaQuery({
-        query: "(max-width: 649px)",
-    });
+    const context = useContext(UseContext);
+    const { isMobile, setIsMobile } = context;
 
     return (
         <div className="flex flex-col bestService">
@@ -172,8 +173,9 @@ export default function BestService({
                                 },
                             }}
                         >
-                            {!queryMobile && "OTHER"}
+                            {!isMobile ? "OTHER" : ""}
                         </motion.div>
+
                         <motion.div
                             variants={{
                                 hover: {
@@ -184,12 +186,12 @@ export default function BestService({
                             <Image
                                 alt="other_grey"
                                 src={
-                                    !queryMobile &&
+                                    !isMobile &&
                                     isHover !== "other"
                                         ? other_grey
                                         : other
                                 }
-                                height={340}
+                                // height={340}
                                 className="flex-[1.0] h-[34rem] object-cover"
                             />
                         </motion.div>

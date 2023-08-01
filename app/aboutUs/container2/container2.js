@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React from "react";
+import React, { useContext } from "react";
 import { motion, spring } from "framer-motion";
 import { usePathname } from "next/navigation";
 
@@ -12,8 +12,12 @@ import facePurple from "public/asset/img/aboutUs/facePurple.png";
 import faceGreen from "public/asset/img/aboutUs/faceGreen.png";
 import faceYellow from "public/asset/img/aboutUs/faceYellow.png";
 import faceRed from "public/asset/img/aboutUs/faceRed.png";
+import { UseContext } from "@/app/store/store";
 
-export default function Container2({}) {
+export default function Container2() {
+    const context = useContext(UseContext);
+    const { isMobile, setIsMobile } = context;
+
     const faceUnit = [
         {
             id: 0,
@@ -53,9 +57,15 @@ export default function Container2({}) {
         },
     ];
 
+    console.log(
+        faceUnit[
+            Math.floor(Math.random() * faceUnit.length)
+        ].id
+    );
+
     return (
         <motion.div
-            className="100vw rounded-t-[8rem] bg-black100 mt-[11rem]"
+            className="100vw rounded-t-[8rem] bg-black100 mt-[11rem] sm:mt-[8rem] sm:rounded-t-[4rem]"
             initial={{
                 y: 100,
             }}
@@ -66,9 +76,9 @@ export default function Container2({}) {
                 },
             }}
         >
-            <div className="wrapper w-[128rem] pt-[10rem] flex flex-col gap-[12rem]">
+            <div className="wrapper w-[128rem] pt-[10rem] flex flex-col gap-[5rem] sm:p-[3rem] sm:w-full">
                 <motion.div
-                    className="w-full h-[35rem]"
+                    className="w-full h-[35rem] sm:h-[15rem] overflow-hidden flex justify-center items-center sm:w-full sm:m-0"
                     initial={{
                         opacity: 0,
                         y: 100,
@@ -82,20 +92,16 @@ export default function Container2({}) {
                     }}
                     viewport={{ once: true }}
                 >
-                    <Image src={topMain} alt="topMain" />
+                    <Image
+                        src={topMain}
+                        alt="topMain"
+                        className="object-cover h-full"
+                    />
                 </motion.div>
-                <div className="flex m-0">
+                <div className="flex m-0 sm:w-full sm:flex-col sm:gap-[5rem]">
                     <div
-                        className="flex flex-col justify-center items-start text-primary100"
-                        style={{
-                            ...fontStyleUtil(
-                                "en",
-                                5.2,
-                                900,
-                                6.4
-                            ),
-                            textShadow: `6px 6px 0px ${styles.point}`,
-                        }}
+                        className="flex flex-col justify-center items-start text-primary100
+                        font-en font-black text-[5.2rem] leading-[6.4rem] drop-shadow-[6px_6px_0px_#AD00FF]"
                     >
                         <motion.p
                             initial={{
@@ -131,7 +137,7 @@ export default function Container2({}) {
                         </motion.p>
                     </div>
                     <motion.div
-                        className="w-[65rem] text-black20"
+                        className="w-[65rem] text-black20 sm:w-fit font-kr font-[400] text-[1.8rem] leading-[3rem] sm:text-[1.5rem] sm:leading-[2.7rem]"
                         initial={{
                             opacity: 0,
                             x: 100,
@@ -144,21 +150,8 @@ export default function Container2({}) {
                             },
                         }}
                         viewport={{ once: true }}
-                        style={fontStyleUtil(
-                            "kr",
-                            1.8,
-                            400,
-                            3
-                        )}
                     >
-                        <span
-                            style={fontStyleUtil(
-                                "en",
-                                3.2,
-                                700,
-                                3
-                            )}
-                        >
+                        <span className="font-kr font-[700] text-[3.2rem] leading-[3rem] sm:text-[2.4rem] sm:leading-[2.4rem]">
                             PIGMENTREE
                         </span>
                         는 다양한 색상과 품질의 염료를
@@ -180,53 +173,138 @@ export default function Container2({}) {
                         있습니다.
                     </motion.div>
                 </div>
-                <div className="bottomBox flex gap-[3.6rem]">
-                    {faceUnit.map((e, i) => (
-                        <motion.div
-                            className="faceUnit w-[27rem] h-[28.5rem] relative flex items-end justify-center"
-                            key={e.id}
-                            initial={{
-                                opacity: 0,
-                                clipPath:
-                                    "inset(0 100% 0 0)",
-                            }}
-                            whileInView={{
-                                opacity: 1,
-                                clipPath:
-                                    "inset(0 -100% -100% 0)",
-                                transition:
-                                    i % 2 === 0
-                                        ? {
-                                              delay: 0.6,
-                                              duration: 1,
-                                              ease: [
-                                                  0.7, 0.25,
-                                                  0.25, 0.9,
-                                              ],
-                                          }
-                                        : {
-                                              delay: 0.3,
-                                              duration: 1,
-                                              ease: [
-                                                  0.7, 0.25,
-                                                  0.25, 0.9,
-                                              ],
-                                          },
-                            }}
-                            viewport={{ once: true }}
-                        >
-                            <div className="absolute w-[21rem]">
-                                <Image
-                                    alt={e.url.toString()}
-                                    src={e.url}
-                                />
-                            </div>
-                            <div
-                                className="w-full h-[20rem] rounded-t-[3rem]"
-                                style={e.style}
-                            ></div>
-                        </motion.div>
-                    ))}
+                <div className="bottomBox flex gap-[3.6rem] sm:flex-col">
+                    {!isMobile &&
+                        faceUnit.map((e, i) => (
+                            <motion.div
+                                className="faceUnit w-[27rem] h-[28.5rem] relative flex items-end justify-center"
+                                key={e.id}
+                                initial={{
+                                    opacity: 0,
+                                    clipPath:
+                                        "inset(0 100% 0 0)",
+                                }}
+                                whileInView={{
+                                    opacity: 1,
+                                    clipPath:
+                                        "inset(0 -100% -100% 0)",
+                                    transition:
+                                        i % 2 === 0
+                                            ? {
+                                                  delay: 0.6,
+                                                  duration: 1,
+                                                  ease: [
+                                                      0.7,
+                                                      0.25,
+                                                      0.25,
+                                                      0.9,
+                                                  ],
+                                              }
+                                            : {
+                                                  delay: 0.3,
+                                                  duration: 1,
+                                                  ease: [
+                                                      0.7,
+                                                      0.25,
+                                                      0.25,
+                                                      0.9,
+                                                  ],
+                                              },
+                                }}
+                                viewport={{ once: true }}
+                            >
+                                <div className="absolute w-[21rem]">
+                                    <Image
+                                        alt={e.url.toString()}
+                                        src={e.url}
+                                    />
+                                </div>
+                                <div
+                                    className="w-full h-[20rem] rounded-t-[3rem]"
+                                    style={e.style}
+                                ></div>
+                            </motion.div>
+                        ))}
+
+                    {/*  mobile */}
+                    {isMobile && (
+                        <div className="sm:flex sm:gap-[3rem]">
+                            <motion.div
+                                className="faceUnit w-[13.5rem] h-[14rem] relative flex items-end justify-center"
+                                initial={{
+                                    opacity: 0,
+                                    clipPath:
+                                        "inset(0 100% 0 0)",
+                                }}
+                                whileInView={{
+                                    opacity: 1,
+                                    clipPath:
+                                        "inset(0 -100% -100% 0)",
+                                    transition: {
+                                        delay: 0.6,
+                                        duration: 1,
+                                        ease: [
+                                            0.7, 0.25, 0.25,
+                                            0.9,
+                                        ],
+                                    },
+                                }}
+                                viewport={{ once: true }}
+                            >
+                                <div className="absolute w-[10rem]">
+                                    <Image
+                                        alt={faceUnit[0].url.toString()}
+                                        src={
+                                            faceUnit[0].url
+                                        }
+                                    />
+                                </div>
+                                <div
+                                    className="w-full h-[8rem] rounded-t-[1rem]"
+                                    style={
+                                        faceUnit[0].style
+                                    }
+                                ></div>
+                            </motion.div>
+                            <motion.div
+                                className="faceUnit w-[13.5rem] h-[14rem] relative flex items-end justify-center"
+                                initial={{
+                                    opacity: 0,
+                                    clipPath:
+                                        "inset(0 100% 0 0)",
+                                }}
+                                whileInView={{
+                                    opacity: 1,
+                                    clipPath:
+                                        "inset(0 -100% -100% 0)",
+                                    transition: {
+                                        delay: 0.6,
+                                        duration: 1,
+                                        ease: [
+                                            0.7, 0.25, 0.25,
+                                            0.9,
+                                        ],
+                                    },
+                                }}
+                                viewport={{ once: true }}
+                            >
+                                <div className="absolute w-[10rem]">
+                                    <Image
+                                        alt={faceUnit[1].url.toString()}
+                                        src={
+                                            faceUnit[1].url
+                                        }
+                                    />
+                                </div>
+                                <div
+                                    className="w-full h-[8rem] rounded-t-[1rem]"
+                                    style={
+                                        faceUnit[1].style
+                                    }
+                                ></div>
+                            </motion.div>
+                        </div>
+                    )}
                 </div>
                 <div className="mb-[16.4rem] flex flex-col gap-[2rem]">
                     <motion.div
