@@ -70,7 +70,7 @@ export default function BestService({
             <div className="image-cont flex flex-col gap-[3rem]">
                 <div className="flex gap-[3rem] sm:gap-0">
                     <motion.div
-                        className="relative overflow-hidden cursor-pointer"
+                        className="relative overflow-hidden cursor-pointer w-[34rem] sm:hidden"
                         initial={{
                             opacity: 0,
                             scale: 0,
@@ -133,7 +133,7 @@ export default function BestService({
                         </motion.div>
                     </motion.div>
                     <motion.div
-                        className="relative overflow-hidden cursor-pointer h-[34rem]"
+                        className="relative overflow-hidden cursor-pointer h-[34rem] w-[91rem] sm:w-[34rem]"
                         initial={{
                             opacity: 0,
                             scale: 0,
@@ -162,7 +162,7 @@ export default function BestService({
                         <motion.div
                             className="absolute top-1/2 left-1/2 z-10 bg-black100 text-primary100 -translate-x-1/2 -translate-y-1/2 px-[5rem] py-[1rem]
                             font-en font-black text-[4.4rem] leading-[5rem] shadow-[10px_10px_0]
-                            sm:px-0 sm:py-0"
+                            sm:px-0 sm:py-0 "
                             initial={{ opacity: 0 }}
                             variants={{
                                 hover: {

@@ -151,7 +151,7 @@ export default function Container2() {
                         }}
                         viewport={{ once: true }}
                     >
-                        <span className="font-kr font-[700] text-[3.2rem] leading-[3rem] sm:text-[2.4rem] sm:leading-[2.4rem]">
+                        <span className="text-black20 font-kr font-[700] text-[3.2rem] leading-[3rem] sm:text-[2.4rem] sm:leading-[2.4rem]">
                             PIGMENTREE
                         </span>
                         는 다양한 색상과 품질의 염료를
@@ -306,7 +306,10 @@ export default function Container2() {
                         </div>
                     )}
                 </div>
-                <div className="mb-[16.4rem] flex flex-col gap-[2rem]">
+                <div
+                    className="mb-[16.4rem] flex flex-col gap-[2rem] sm:mb-[5rem] font-kr font-[700] text-[2.4rem] leading-[3rem]
+                sm:text-[2rem] sm:leading-[2.4rem]"
+                >
                     <motion.div
                         initial={{
                             opacity: 0,
@@ -321,17 +324,11 @@ export default function Container2() {
                         }}
                         viewport={{ once: true }}
                         className="text-black20 m-0"
-                        style={fontStyleUtil(
-                            "kr",
-                            2.4,
-                            700,
-                            3
-                        )}
                     >
                         당신의 미적감각을 위한 최고의 선택
                     </motion.div>
                     <motion.div
-                        className="text-black40"
+                        className="text-black40 font-kr font-[400] text-[1.8rem] leading-[3rem] sm:text-[1.5rem] sm:leading-[2.4rem]"
                         initial={{
                             opacity: 0,
                             x: 100,
@@ -345,12 +342,6 @@ export default function Container2() {
                             },
                         }}
                         viewport={{ once: true }}
-                        style={fontStyleUtil(
-                            "kr",
-                            1.8,
-                            400,
-                            3
-                        )}
                     >
                         더 나아가, 우리는 지속 가능한 개념을
                         따르고자 합니다. 환경 보호를
@@ -365,7 +356,8 @@ export default function Container2() {
                         아름다운 작품을 만들어보세요.
                     </motion.div>
                     <motion.div
-                        className="text-black40 text-center mt-[6rem] "
+                        className="text-black40 text-center mt-[6rem] font-kr font-[700] text-[2.4rem] leading-[3.6rem]
+                        sm:text-[1.8rem] sm:leading-[3rem]"
                         initial={{
                             opacity: 0,
                             x: 100,
@@ -378,14 +370,6 @@ export default function Container2() {
                             },
                         }}
                         viewport={{ once: true }}
-                        style={{
-                            ...fontStyleUtil(
-                                "kr",
-                                2.4,
-                                700,
-                                3.6
-                            ),
-                        }}
                     >
                         <b>PIGMENTREE</b>를 통해 더욱
                         창조적이고 아름다운 작품을

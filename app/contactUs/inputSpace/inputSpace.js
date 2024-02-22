@@ -50,7 +50,7 @@ export default function InputSpace() {
     };
 
     return (
-        <div className="wrapper w-[128rem] flex justify-between items-end mt-[15rem]">
+        <div className="wrapper w-[128rem] flex justify-between items-end mt-[15rem] sm:w-[34rem]">
             <div className=" m-0 flex flex-col">
                 <div className="title flex flex-col gap-[2rem] mb-[2rem]">
                     <motion.div
